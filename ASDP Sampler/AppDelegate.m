@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "APIManager.h"
 
 @implementation AppDelegate
 
@@ -18,6 +19,11 @@
         UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
         splitViewController.delegate = (id)navigationController.topViewController;
     }
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        [[APIManager sharedManager] loadSpecs];
+    });
+
     return YES;
 }
 							

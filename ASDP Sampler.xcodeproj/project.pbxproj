@@ -18,6 +18,10 @@
 		EA2C55DD199C1CF5009ECA4A /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2C55DC199C1CF5009ECA4A /* MasterViewController.m */; };
 		EA2C55E0199C1CF5009ECA4A /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2C55DF199C1CF5009ECA4A /* DetailViewController.m */; };
 		EA2C55E2199C1CF5009ECA4A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA2C55E1199C1CF5009ECA4A /* Images.xcassets */; };
+		EAB9622B19A26DC400211848 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB9622A19A26DC400211848 /* APIManager.m */; };
+		EAB9622E19A2709D00211848 /* APICategory.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB9622D19A2709D00211848 /* APICategory.m */; };
+		EAB9623119A270C400211848 /* APISpecRaw.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB9623019A270C400211848 /* APISpecRaw.m */; };
+		EAB9623519A27F9100211848 /* APISpec.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB9623419A27F9100211848 /* APISpec.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +43,15 @@
 		EA2C55DF199C1CF5009ECA4A /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		EA2C55E1199C1CF5009ECA4A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		EA2C55E8199C1CF5009ECA4A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		EAB9622919A26DC400211848 /* APIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
+		EAB9622A19A26DC400211848 /* APIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
+		EAB9622C19A2709D00211848 /* APICategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APICategory.h; sourceTree = "<group>"; };
+		EAB9622D19A2709D00211848 /* APICategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APICategory.m; sourceTree = "<group>"; };
+		EAB9622F19A270C400211848 /* APISpecRaw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APISpecRaw.h; sourceTree = "<group>"; };
+		EAB9623019A270C400211848 /* APISpecRaw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APISpecRaw.m; sourceTree = "<group>"; };
+		EAB9623219A27E0600211848 /* JSONCoding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JSONCoding.h; path = "ASDP Sampler/JSONCoding.h"; sourceTree = SOURCE_ROOT; };
+		EAB9623319A27F9100211848 /* APISpec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APISpec.h; sourceTree = "<group>"; };
+		EAB9623419A27F9100211848 /* APISpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APISpec.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +99,8 @@
 		EA2C55C9199C1CF5009ECA4A /* ASDP Sampler */ = {
 			isa = PBXGroup;
 			children = (
+				EAB9622719A26D7B00211848 /* API */,
+				EAB9622819A26D7B00211848 /* Network */,
 				EA2C55D2199C1CF5009ECA4A /* AppDelegate.h */,
 				EA2C55D3199C1CF5009ECA4A /* AppDelegate.m */,
 				EA2C55D5199C1CF5009ECA4A /* Main_iPhone.storyboard */,
@@ -94,6 +109,7 @@
 				EA2C55DC199C1CF5009ECA4A /* MasterViewController.m */,
 				EA2C55DE199C1CF5009ECA4A /* DetailViewController.h */,
 				EA2C55DF199C1CF5009ECA4A /* DetailViewController.m */,
+				EAB9623219A27E0600211848 /* JSONCoding.h */,
 				EA2C55E1199C1CF5009ECA4A /* Images.xcassets */,
 				EA2C55CA199C1CF5009ECA4A /* Supporting Files */,
 			);
@@ -109,6 +125,28 @@
 				EA2C55D1199C1CF5009ECA4A /* ASDP Sampler-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EAB9622719A26D7B00211848 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				EAB9622919A26DC400211848 /* APIManager.h */,
+				EAB9622A19A26DC400211848 /* APIManager.m */,
+				EAB9622C19A2709D00211848 /* APICategory.h */,
+				EAB9622D19A2709D00211848 /* APICategory.m */,
+				EAB9622F19A270C400211848 /* APISpecRaw.h */,
+				EAB9623019A270C400211848 /* APISpecRaw.m */,
+				EAB9623319A27F9100211848 /* APISpec.h */,
+				EAB9623419A27F9100211848 /* APISpec.m */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		EAB9622819A26D7B00211848 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,9 +215,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAB9622B19A26DC400211848 /* APIManager.m in Sources */,
+				EAB9623519A27F9100211848 /* APISpec.m in Sources */,
 				EA2C55D4199C1CF5009ECA4A /* AppDelegate.m in Sources */,
 				EA2C55DD199C1CF5009ECA4A /* MasterViewController.m in Sources */,
 				EA2C55D0199C1CF5009ECA4A /* main.m in Sources */,
+				EAB9622E19A2709D00211848 /* APICategory.m in Sources */,
+				EAB9623119A270C400211848 /* APISpecRaw.m in Sources */,
 				EA2C55E0199C1CF5009ECA4A /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
