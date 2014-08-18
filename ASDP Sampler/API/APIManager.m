@@ -18,7 +18,7 @@
 
     if (self)
     {
-        _state = APIManagerStateInitial;
+        self.state = APIManagerStateInitial;
     }
 
     return self;
@@ -47,7 +47,7 @@
 
 - (void)loadSpecsFromRemoteJSON:(NSURL *)jsonURL
 {
-    _state = APIManagerStateFetching;
+    self.state = APIManagerStateFetching;
 
     NSURLRequest *request = [NSURLRequest requestWithURL:jsonURL];
 
@@ -55,18 +55,19 @@
     NSError *error;
     NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
 
-    if (error || !response)
+    if (error || !response || !responseData)
     {
-        _state = APIManagerStateError;
+        self.state = APIManagerStateError;
         [[[UIAlertView alloc] initWithTitle:@"Experienced Error Downloading API Specs" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
     } else
     {
-        _state = APIManagerStateParsing;
+        self.state = APIManagerStateParsing;
+
         NSArray *rawSpecData = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&error];
 
         if (error || !rawSpecData)
         {
-            _state = APIManagerStateError;
+            self.state = APIManagerStateError;
             [[[UIAlertView alloc] initWithTitle:@"Experienced Error Parsing API Specs" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
         } else
         {
@@ -102,8 +103,8 @@
             }];
 
             _categories = [NSArray arrayWithArray:categories];
-            NSLog(@"%@", _categories);
-            _state = APIManagerStateComplete;
+
+            self.state = APIManagerStateComplete;
         }
     }
 }

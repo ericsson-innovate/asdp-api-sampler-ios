@@ -29,7 +29,7 @@ typedef NSUInteger APIManagerState;
 - (BOOL) isSupported:(APISpecRaw *)spec;
 - (NSHTTPURLResponse *) executeAPI:(APISpecRaw *)spec params:(NSDictionary *)params request:(NSURLRequest **)request error:(NSError **)error;
 
-@property (nonatomic, strong, readonly) NSArray *categories;
-@property (nonatomic, readonly) APIManagerState state;
+@property (nonatomic, strong) NSArray *categories;
+@property (nonatomic) APIManagerState state;
 
 @end
