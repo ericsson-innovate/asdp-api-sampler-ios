@@ -1,17 +1,17 @@
 //
-//  MasterViewController.m
+//  CategoriesViewController.m
 //  ASDP Sampler
 //
 //  Created by Jeremy White on 8/13/14.
 //  Copyright (c) 2014 AT&T Foundry. All rights reserved.
 //
 
-#import "MasterViewController.h"
-#import "DetailViewController.h"
+#import "CategoriesViewController.h"
 #import "APIManager.h"
 #import "APICategory.h"
+#import "CategoryViewController.h"
 
-@implementation MasterViewController
+@implementation CategoriesViewController
 
 - (void)awakeFromNib
 {
@@ -28,8 +28,6 @@
 
     if ([APIManager sharedManager].state != APIManagerStateComplete)
         [[APIManager sharedManager] addObserver:self forKeyPath:@"state" options:0 context:nil];
-
-    self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
 }
 
 - (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -99,6 +97,13 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    if ([[segue identifier] isEqualToString:@"showCategory"])
+    {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        APICategory *category = [APIManager sharedManager].categories[indexPath.row];
+        [[segue destinationViewController] setCategory:category];
+    }
+
 //    if ([[segue identifier] isEqualToString:@"showDetail"]) {
 //        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
 //        NSDate *object = _objects[indexPath.row];

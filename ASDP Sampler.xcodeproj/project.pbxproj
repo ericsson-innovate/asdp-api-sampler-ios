@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BB9F77C7ABB4B81B8BAA3433 /* APICategory.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9F7747DA005BCBC455BAB9 /* APICategory.m */; };
+		BB9F7F261FF60F647DC3C1E1 /* CategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9F70ED11E5065E5DBE86ED /* CategoryViewController.m */; };
 		EA2C55C4199C1CF5009ECA4A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2C55C3199C1CF5009ECA4A /* Foundation.framework */; };
 		EA2C55C6199C1CF5009ECA4A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2C55C5199C1CF5009ECA4A /* CoreGraphics.framework */; };
 		EA2C55C8199C1CF5009ECA4A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2C55C7199C1CF5009ECA4A /* UIKit.framework */; };
@@ -16,7 +17,7 @@
 		EA2C55D4199C1CF5009ECA4A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2C55D3199C1CF5009ECA4A /* AppDelegate.m */; };
 		EA2C55D7199C1CF5009ECA4A /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA2C55D5199C1CF5009ECA4A /* Main_iPhone.storyboard */; };
 		EA2C55DA199C1CF5009ECA4A /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA2C55D8199C1CF5009ECA4A /* Main_iPad.storyboard */; };
-		EA2C55DD199C1CF5009ECA4A /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2C55DC199C1CF5009ECA4A /* MasterViewController.m */; };
+		EA2C55DD199C1CF5009ECA4A /* CategoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2C55DC199C1CF5009ECA4A /* CategoriesViewController.m */; };
 		EA2C55E0199C1CF5009ECA4A /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2C55DF199C1CF5009ECA4A /* DetailViewController.m */; };
 		EA2C55E2199C1CF5009ECA4A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA2C55E1199C1CF5009ECA4A /* Images.xcassets */; };
 		EAB9622B19A26DC400211848 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB9622A19A26DC400211848 /* APIManager.m */; };
@@ -25,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BB9F70D1BB7988C456C70919 /* CategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryViewController.h; sourceTree = "<group>"; };
+		BB9F70ED11E5065E5DBE86ED /* CategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryViewController.m; sourceTree = "<group>"; };
 		BB9F7298207F5ED828A01AB0 /* APICategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APICategory.h; sourceTree = "<group>"; };
 		BB9F7747DA005BCBC455BAB9 /* APICategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APICategory.m; sourceTree = "<group>"; };
 		EA2C55C0199C1CF5009ECA4A /* ASDP Sampler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ASDP Sampler.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -39,8 +42,8 @@
 		EA2C55D3199C1CF5009ECA4A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		EA2C55D6199C1CF5009ECA4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		EA2C55D9199C1CF5009ECA4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		EA2C55DB199C1CF5009ECA4A /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
-		EA2C55DC199C1CF5009ECA4A /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
+		EA2C55DB199C1CF5009ECA4A /* CategoriesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoriesViewController.h; sourceTree = "<group>"; };
+		EA2C55DC199C1CF5009ECA4A /* CategoriesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoriesViewController.m; sourceTree = "<group>"; };
 		EA2C55DE199C1CF5009ECA4A /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		EA2C55DF199C1CF5009ECA4A /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		EA2C55E1199C1CF5009ECA4A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -105,13 +108,15 @@
 				EA2C55D3199C1CF5009ECA4A /* AppDelegate.m */,
 				EA2C55D5199C1CF5009ECA4A /* Main_iPhone.storyboard */,
 				EA2C55D8199C1CF5009ECA4A /* Main_iPad.storyboard */,
-				EA2C55DB199C1CF5009ECA4A /* MasterViewController.h */,
-				EA2C55DC199C1CF5009ECA4A /* MasterViewController.m */,
+				EA2C55DB199C1CF5009ECA4A /* CategoriesViewController.h */,
+				EA2C55DC199C1CF5009ECA4A /* CategoriesViewController.m */,
 				EA2C55DE199C1CF5009ECA4A /* DetailViewController.h */,
 				EA2C55DF199C1CF5009ECA4A /* DetailViewController.m */,
 				EAB9623219A27E0600211848 /* JSONCoding.h */,
 				EA2C55E1199C1CF5009ECA4A /* Images.xcassets */,
 				EA2C55CA199C1CF5009ECA4A /* Supporting Files */,
+				BB9F70ED11E5065E5DBE86ED /* CategoryViewController.m */,
+				BB9F70D1BB7988C456C70919 /* CategoryViewController.h */,
 			);
 			path = "ASDP Sampler";
 			sourceTree = "<group>";
@@ -218,11 +223,12 @@
 				EAB9622B19A26DC400211848 /* APIManager.m in Sources */,
 				EAB9623519A27F9100211848 /* APISpec.m in Sources */,
 				EA2C55D4199C1CF5009ECA4A /* AppDelegate.m in Sources */,
-				EA2C55DD199C1CF5009ECA4A /* MasterViewController.m in Sources */,
+				EA2C55DD199C1CF5009ECA4A /* CategoriesViewController.m in Sources */,
 				EA2C55D0199C1CF5009ECA4A /* main.m in Sources */,
 				EAB9623119A270C400211848 /* APISpecRaw.m in Sources */,
 				EA2C55E0199C1CF5009ECA4A /* DetailViewController.m in Sources */,
 				BB9F77C7ABB4B81B8BAA3433 /* APICategory.m in Sources */,
+				BB9F7F261FF60F647DC3C1E1 /* CategoryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
