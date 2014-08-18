@@ -46,29 +46,28 @@
 	// Do any additional setup after loading the view, typically from a nib.
     [self configureView];
     
-    NSString *username = @"provider";
-    NSString *password = @"1234";
-    NSString *authString = [NSString stringWithFormat:@"%@:%@", username, password];
-    NSData *authData = [authString dataUsingEncoding:NSASCIIStringEncoding];
-    NSString *authorization = [NSString stringWithFormat:@"Basic %@", [authData base64EncodedStringWithOptions:0]];
-    
-    NSString *bodyString = @"{}";
-    NSData *bodyData = [bodyString dataUsingEncoding:NSUTF8StringEncoding];
-    
-    NSString *requestPath = @"http://lightning.att.io:3000/remoteservices/v1/vehicle/engineOn/1234";
-    NSURL *requestURL = [NSURL URLWithString:requestPath];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
-    [request setHTTPMethod:@"POST"];
-    [request setAllHTTPHeaderFields:@{
-                                      @"Authorization" : authorization,
-                                      @"APIKey" : @"1234",
-                                      @"Content-Type" : @"application/json"
-                                      }];
-    [request setHTTPBody:bodyData];
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        NSString *dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        NSLog(@"break");
-    }];
+//    NSString *username = @"provider";
+//    NSString *password = @"1234";
+//    NSString *authString = [NSString stringWithFormat:@"%@:%@", username, password];
+//    NSData *authData = [authString dataUsingEncoding:NSASCIIStringEncoding];
+//    NSString *authorization = [NSString stringWithFormat:@"Basic %@", [authData base64EncodedStringWithOptions:0]];
+//
+//    NSString *bodyString = @"{}";
+//    NSData *bodyData = [bodyString dataUsingEncoding:NSUTF8StringEncoding];
+//
+//    NSString *requestPath = @"http://lightning.att.io:3000/remoteservices/v1/vehicle/engineOn/1234";
+//    NSURL *requestURL = [NSURL URLWithString:requestPath];
+//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
+//    [request setHTTPMethod:@"POST"];
+//    [request setAllHTTPHeaderFields:@{
+//                                      @"Authorization" : authorization,
+//                                      @"APIKey" : @"1234",
+//                                      @"Content-Type" : @"application/json"
+//                                      }];
+//    [request setHTTPBody:bodyData];
+//    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+//        NSString *dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//    }];
     
 }
 
