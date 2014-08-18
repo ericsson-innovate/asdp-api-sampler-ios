@@ -82,6 +82,17 @@
     return string != nil && string.length > 0;
 }
 
++ (id) fromJSONObject:(NSDictionary *)json
+{
+    // // we don't need to implement this method
+    return nil;
+}
+
+- (id) toJSONObject
+{
+    return [_apiSpecRaw toJSONObject];
+}
+
 - (NSString *) description
 {
     return [_apiSpecRaw description];

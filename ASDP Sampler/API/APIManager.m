@@ -8,8 +8,21 @@
 
 #import "APIManager.h"
 #import "APISpec.h"
+#import "APICategory.h"
 
 @implementation APIManager
+
+- (id) init
+{
+    self = [super init];
+
+    if (self)
+    {
+        _state = APIManagerStateInitial;
+    }
+
+    return self;
+}
 
 + (APIManager *)sharedManager
 {
@@ -26,7 +39,7 @@
 
 - (void)loadSpecs
 {
-    if (!self.specDictionary || self.specDictionary.count == 0)
+    if (!self.categories || self.categories.count == 0)
     {
         [self loadSpecsFromRemoteJSON:kRemoteAPISpecURL];
     }
@@ -34,6 +47,8 @@
 
 - (void)loadSpecsFromRemoteJSON:(NSURL *)jsonURL
 {
+    _state = APIManagerStateFetching;
+
     NSURLRequest *request = [NSURLRequest requestWithURL:jsonURL];
 
     NSURLResponse *response;
@@ -42,15 +57,16 @@
 
     if (error || !response)
     {
+        _state = APIManagerStateError;
         [[[UIAlertView alloc] initWithTitle:@"Experienced Error Downloading API Specs" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
     } else
     {
-        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
-
+        _state = APIManagerStateParsing;
         NSArray *rawSpecData = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&error];
 
         if (error || !rawSpecData)
         {
+            _state = APIManagerStateError;
             [[[UIAlertView alloc] initWithTitle:@"Experienced Error Parsing API Specs" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
         } else
         {
@@ -75,11 +91,19 @@
 
             // Make everything immutable
 
+            NSMutableArray *categories = [NSMutableArray new];
+
             [specDictionary enumerateKeysAndObjectsUsingBlock:^(NSString *category, NSMutableArray *specs, BOOL *stop) {
-                specDictionary[category] = [NSArray arrayWithArray:specs];
+                APICategory *apiCategory = [[APICategory alloc] init];
+                apiCategory.name = category;
+                apiCategory.specs = [NSArray arrayWithArray:specs];
+
+                [categories addObject:apiCategory];
             }];
 
-            _specDictionary = [NSMutableDictionary dictionaryWithDictionary:specDictionary];
+            _categories = [NSArray arrayWithArray:categories];
+            NSLog(@"%@", _categories);
+            _state = APIManagerStateComplete;
         }
     }
 }

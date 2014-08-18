@@ -10,13 +10,18 @@
 #import "APISpecRaw.h"
 
 #define kRemoteAPISpecURL [NSURL URLWithString:@"https://ericsson-innovate.github.io/hackathon-portal/dist/data/specifications.json"]
-#define kAPICategoryNames @{ \
-                               @"know-driver" : @"Know Driver", \
-                               @"know-car" : @"Know Car", \
-                               @"control-car" : @"Control Car" \
-                           }
 
 @interface APIManager : NSObject
+
+enum {
+    APIManagerStateInitial = 0,
+    APIManagerStateFetching,
+    APIManagerStateParsing,
+    APIManagerStateComplete,
+    APIManagerStateError
+};
+
+typedef NSUInteger APIManagerState;
 
 + (APIManager *) sharedManager;
 
@@ -24,6 +29,7 @@
 - (BOOL) isSupported:(APISpecRaw *)spec;
 - (NSHTTPURLResponse *) executeAPI:(APISpecRaw *)spec params:(NSDictionary *)params request:(NSURLRequest **)request error:(NSError **)error;
 
-@property (nonatomic, strong, readonly) NSDictionary *specDictionary;
+@property (nonatomic, strong, readonly) NSArray *categories;
+@property (nonatomic, readonly) APIManagerState state;
 
 @end

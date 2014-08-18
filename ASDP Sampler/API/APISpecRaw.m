@@ -26,15 +26,6 @@
 
 - (NSDictionary *) toJSONObject
 {
-//    NSMutableDictionary *json = [NSMutableDictionary new];
-//    json[@"id"] = self.identifier;
-//    json[@"name"] = self.name;
-//    json[@"desc"] = self.desc;
-//    json[@"docNumber"] = self.docNumber;
-//    json[@"categories"] = self.categories;
-//    json[@"resourceTable"] = [self.resourceTable toJSONObject];
-//    json[@"parameters"] = [self.parameters toJSONObject];
-
     return @{
             @"id" : self.identifier,
             @"name" : self.name,
@@ -49,7 +40,7 @@
 - (NSString *) description
 {
     id json = [self toJSONObject];
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:json options:NSJSONWritingPrettyPrinted error:nil];
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:json options:0 error:nil];
 
     return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
@@ -78,7 +69,7 @@
 - (NSString *) description
 {
     id json = [self toJSONObject];
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:json options:NSJSONWritingPrettyPrinted error:nil];
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:json options:0 error:nil];
 
     return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
@@ -119,7 +110,7 @@
 - (NSString *) description
 {
     id json = [self toJSONObject];
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:json options:NSJSONWritingPrettyPrinted error:nil];
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:json options:0 error:nil];
 
     return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
@@ -152,7 +143,7 @@
 - (NSString *) description
 {
     id json = [self toJSONObject];
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:json options:NSJSONWritingPrettyPrinted error:nil];
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:json options:0 error:nil];
 
     return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }

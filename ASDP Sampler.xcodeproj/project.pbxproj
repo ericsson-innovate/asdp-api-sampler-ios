@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB9F77C7ABB4B81B8BAA3433 /* APICategory.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9F7747DA005BCBC455BAB9 /* APICategory.m */; };
 		EA2C55C4199C1CF5009ECA4A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2C55C3199C1CF5009ECA4A /* Foundation.framework */; };
 		EA2C55C6199C1CF5009ECA4A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2C55C5199C1CF5009ECA4A /* CoreGraphics.framework */; };
 		EA2C55C8199C1CF5009ECA4A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2C55C7199C1CF5009ECA4A /* UIKit.framework */; };
@@ -24,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BB9F7298207F5ED828A01AB0 /* APICategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APICategory.h; sourceTree = "<group>"; };
+		BB9F7747DA005BCBC455BAB9 /* APICategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APICategory.m; sourceTree = "<group>"; };
 		EA2C55C0199C1CF5009ECA4A /* ASDP Sampler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ASDP Sampler.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA2C55C3199C1CF5009ECA4A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EA2C55C5199C1CF5009ECA4A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -133,6 +136,8 @@
 				EAB9623019A270C400211848 /* APISpecRaw.m */,
 				EAB9623319A27F9100211848 /* APISpec.h */,
 				EAB9623419A27F9100211848 /* APISpec.m */,
+				BB9F7747DA005BCBC455BAB9 /* APICategory.m */,
+				BB9F7298207F5ED828A01AB0 /* APICategory.h */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -217,6 +222,7 @@
 				EA2C55D0199C1CF5009ECA4A /* main.m in Sources */,
 				EAB9623119A270C400211848 /* APISpecRaw.m in Sources */,
 				EA2C55E0199C1CF5009ECA4A /* DetailViewController.m in Sources */,
+				BB9F77C7ABB4B81B8BAA3433 /* APICategory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
