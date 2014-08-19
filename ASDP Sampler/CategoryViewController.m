@@ -7,6 +7,7 @@
 #import "APIManager.h"
 #import "APICategory.h"
 #import "APISpec.h"
+#import "DetailViewController.h"
 
 @implementation CategoryViewController
 
@@ -23,7 +24,7 @@
 {
     [super viewDidLoad];
 
-    self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    self.detailViewController = (DetailViewController *) [[self.splitViewController.viewControllers lastObject] topViewController];
 }
 
 #pragma mark - Table View
@@ -69,18 +70,18 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-//        NSDate *object = _objects[indexPath.row];
-//        self.detailViewController.detailItem = object;
-//    }
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        APISpec *spec = self.category.specs[indexPath.row];
+        self.detailViewController.detailItem = spec;
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-//    if ([[segue identifier] isEqualToString:@"showDetail"]) {
+//    if ([[segue identifier] isEqualToString:@"showDetail"] && [segue.destinationViewController isKindOfClass:[DetailViewController class]]) {
 //        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-//        NSDate *object = _objects[indexPath.row];
-//        [[segue destinationViewController] setDetailItem:object];
+//        APISpec *spec = self.category.specs[indexPath.row];
+//        [((DetailViewController *) [segue destinationViewController]) setDetailItem:spec];
 //    }
 }
 

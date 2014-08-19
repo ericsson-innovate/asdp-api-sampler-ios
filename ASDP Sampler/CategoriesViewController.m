@@ -97,11 +97,11 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"showCategory"])
+    if ([[segue identifier] isEqualToString:@"showCategory"] && [segue.destinationViewController isKindOfClass:[CategoryViewController class]])
     {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         APICategory *category = [APIManager sharedManager].categories[indexPath.row];
-        [[segue destinationViewController] setCategory:category];
+        [((CategoryViewController *) [segue destinationViewController]) setCategory:category];
     }
 
 //    if ([[segue identifier] isEqualToString:@"showDetail"]) {
