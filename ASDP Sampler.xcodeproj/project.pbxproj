@@ -9,9 +9,11 @@
 /* Begin PBXBuildFile section */
 		BB9F77C7ABB4B81B8BAA3433 /* APICategory.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9F7747DA005BCBC455BAB9 /* APICategory.m */; };
 		BB9F7F261FF60F647DC3C1E1 /* CategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9F70ED11E5065E5DBE86ED /* CategoryViewController.m */; };
-		EA04DBBF19A3C9C400C90668 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2C55E8199C1CF5009ECA4A /* XCTest.framework */; };
-		EA04DBC519A3C9C400C90668 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EA04DBC319A3C9C400C90668 /* InfoPlist.strings */; };
-		EA04DBC719A3C9C400C90668 /* ASDP_Sampler_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA04DBC619A3C9C400C90668 /* ASDP_Sampler_Tests.m */; };
+		EA04DC1D19A3D18000C90668 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2C55E8199C1CF5009ECA4A /* XCTest.framework */; };
+		EA04DC1E19A3D18000C90668 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2C55C3199C1CF5009ECA4A /* Foundation.framework */; };
+		EA04DC1F19A3D18000C90668 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2C55C7199C1CF5009ECA4A /* UIKit.framework */; };
+		EA04DC2519A3D18000C90668 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EA04DC2319A3D18000C90668 /* InfoPlist.strings */; };
+		EA04DC2719A3D18000C90668 /* ASDP_Sampler_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA04DC2619A3D18000C90668 /* ASDP_Sampler_Tests.m */; };
 		EA2C55C4199C1CF5009ECA4A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2C55C3199C1CF5009ECA4A /* Foundation.framework */; };
 		EA2C55C6199C1CF5009ECA4A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2C55C5199C1CF5009ECA4A /* CoreGraphics.framework */; };
 		EA2C55C8199C1CF5009ECA4A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2C55C7199C1CF5009ECA4A /* UIKit.framework */; };
@@ -29,7 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		EA04DBC919A3C9C400C90668 /* PBXContainerItemProxy */ = {
+		EA04DC2919A3D18000C90668 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EA2C55B8199C1CF5009ECA4A /* Project object */;
 			proxyType = 1;
@@ -43,11 +45,11 @@
 		BB9F70ED11E5065E5DBE86ED /* CategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryViewController.m; sourceTree = "<group>"; };
 		BB9F7298207F5ED828A01AB0 /* APICategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APICategory.h; sourceTree = "<group>"; };
 		BB9F7747DA005BCBC455BAB9 /* APICategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APICategory.m; sourceTree = "<group>"; };
-		EA04DBBE19A3C9C400C90668 /* ASDP Sampler Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ASDP Sampler Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		EA04DBC219A3C9C400C90668 /* ASDP Sampler Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ASDP Sampler Tests-Info.plist"; sourceTree = "<group>"; };
-		EA04DBC419A3C9C400C90668 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		EA04DBC619A3C9C400C90668 /* ASDP_Sampler_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASDP_Sampler_Tests.m; sourceTree = "<group>"; };
-		EA04DBC819A3C9C400C90668 /* ASDP Sampler Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ASDP Sampler Tests-Prefix.pch"; sourceTree = "<group>"; };
+		EA04DC1C19A3D18000C90668 /* ASDP Sampler Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ASDP Sampler Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA04DC2219A3D18000C90668 /* ASDP Sampler Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ASDP Sampler Tests-Info.plist"; sourceTree = "<group>"; };
+		EA04DC2419A3D18000C90668 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		EA04DC2619A3D18000C90668 /* ASDP_Sampler_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASDP_Sampler_Tests.m; sourceTree = "<group>"; };
+		EA04DC2819A3D18000C90668 /* ASDP Sampler Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ASDP Sampler Tests-Prefix.pch"; sourceTree = "<group>"; };
 		EA2C55C0199C1CF5009ECA4A /* ASDP Sampler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ASDP Sampler.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA2C55C3199C1CF5009ECA4A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EA2C55C5199C1CF5009ECA4A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -76,11 +78,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		EA04DBBB19A3C9C400C90668 /* Frameworks */ = {
+		EA04DC1919A3D18000C90668 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA04DBBF19A3C9C400C90668 /* XCTest.framework in Frameworks */,
+				EA04DC1D19A3D18000C90668 /* XCTest.framework in Frameworks */,
+				EA04DC1F19A3D18000C90668 /* UIKit.framework in Frameworks */,
+				EA04DC1E19A3D18000C90668 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,21 +101,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		EA04DBC019A3C9C400C90668 /* ASDP Sampler Tests */ = {
+		EA04DC2019A3D18000C90668 /* ASDP Sampler Tests */ = {
 			isa = PBXGroup;
 			children = (
-				EA04DBC619A3C9C400C90668 /* ASDP_Sampler_Tests.m */,
-				EA04DBC119A3C9C400C90668 /* Supporting Files */,
+				EA04DC2619A3D18000C90668 /* ASDP_Sampler_Tests.m */,
+				EA04DC2119A3D18000C90668 /* Supporting Files */,
 			);
 			path = "ASDP Sampler Tests";
 			sourceTree = "<group>";
 		};
-		EA04DBC119A3C9C400C90668 /* Supporting Files */ = {
+		EA04DC2119A3D18000C90668 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				EA04DBC219A3C9C400C90668 /* ASDP Sampler Tests-Info.plist */,
-				EA04DBC319A3C9C400C90668 /* InfoPlist.strings */,
-				EA04DBC819A3C9C400C90668 /* ASDP Sampler Tests-Prefix.pch */,
+				EA04DC2219A3D18000C90668 /* ASDP Sampler Tests-Info.plist */,
+				EA04DC2319A3D18000C90668 /* InfoPlist.strings */,
+				EA04DC2819A3D18000C90668 /* ASDP Sampler Tests-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -120,7 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				EA2C55C9199C1CF5009ECA4A /* ASDP Sampler */,
-				EA04DBC019A3C9C400C90668 /* ASDP Sampler Tests */,
+				EA04DC2019A3D18000C90668 /* ASDP Sampler Tests */,
 				EA2C55C2199C1CF5009ECA4A /* Frameworks */,
 				EA2C55C1199C1CF5009ECA4A /* Products */,
 			);
@@ -130,7 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				EA2C55C0199C1CF5009ECA4A /* ASDP Sampler.app */,
-				EA04DBBE19A3C9C400C90668 /* ASDP Sampler Tests.xctest */,
+				EA04DC1C19A3D18000C90668 /* ASDP Sampler Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -204,22 +208,22 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		EA04DBBD19A3C9C400C90668 /* ASDP Sampler Tests */ = {
+		EA04DC1B19A3D18000C90668 /* ASDP Sampler Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EA04DBCD19A3C9C400C90668 /* Build configuration list for PBXNativeTarget "ASDP Sampler Tests" */;
+			buildConfigurationList = EA04DC2B19A3D18000C90668 /* Build configuration list for PBXNativeTarget "ASDP Sampler Tests" */;
 			buildPhases = (
-				EA04DBBA19A3C9C400C90668 /* Sources */,
-				EA04DBBB19A3C9C400C90668 /* Frameworks */,
-				EA04DBBC19A3C9C400C90668 /* Resources */,
+				EA04DC1819A3D18000C90668 /* Sources */,
+				EA04DC1919A3D18000C90668 /* Frameworks */,
+				EA04DC1A19A3D18000C90668 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				EA04DBCA19A3C9C400C90668 /* PBXTargetDependency */,
+				EA04DC2A19A3D18000C90668 /* PBXTargetDependency */,
 			);
 			name = "ASDP Sampler Tests";
 			productName = "ASDP Sampler Tests";
-			productReference = EA04DBBE19A3C9C400C90668 /* ASDP Sampler Tests.xctest */;
+			productReference = EA04DC1C19A3D18000C90668 /* ASDP Sampler Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		EA2C55BF199C1CF5009ECA4A /* ASDP Sampler */ = {
@@ -248,7 +252,7 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "AT&T Foundry";
 				TargetAttributes = {
-					EA04DBBD19A3C9C400C90668 = {
+					EA04DC1B19A3D18000C90668 = {
 						TestTargetID = EA2C55BF199C1CF5009ECA4A;
 					};
 				};
@@ -267,17 +271,17 @@
 			projectRoot = "";
 			targets = (
 				EA2C55BF199C1CF5009ECA4A /* ASDP Sampler */,
-				EA04DBBD19A3C9C400C90668 /* ASDP Sampler Tests */,
+				EA04DC1B19A3D18000C90668 /* ASDP Sampler Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		EA04DBBC19A3C9C400C90668 /* Resources */ = {
+		EA04DC1A19A3D18000C90668 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA04DBC519A3C9C400C90668 /* InfoPlist.strings in Resources */,
+				EA04DC2519A3D18000C90668 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,11 +299,11 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		EA04DBBA19A3C9C400C90668 /* Sources */ = {
+		EA04DC1819A3D18000C90668 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA04DBC719A3C9C400C90668 /* ASDP_Sampler_Tests.m in Sources */,
+				EA04DC2719A3D18000C90668 /* ASDP_Sampler_Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,18 +326,18 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		EA04DBCA19A3C9C400C90668 /* PBXTargetDependency */ = {
+		EA04DC2A19A3D18000C90668 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = EA2C55BF199C1CF5009ECA4A /* ASDP Sampler */;
-			targetProxy = EA04DBC919A3C9C400C90668 /* PBXContainerItemProxy */;
+			targetProxy = EA04DC2919A3D18000C90668 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		EA04DBC319A3C9C400C90668 /* InfoPlist.strings */ = {
+		EA04DC2319A3D18000C90668 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				EA04DBC419A3C9C400C90668 /* en */,
+				EA04DC2419A3D18000C90668 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -365,15 +369,15 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		EA04DBCB19A3C9C400C90668 /* Debug */ = {
+		EA04DC2C19A3D18000C90668 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ASDP Sampler.app/ASDP Sampler";
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ASDP Sampler Tests/ASDP Sampler Tests-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -381,30 +385,25 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "ASDP Sampler Tests/ASDP Sampler Tests-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
 		};
-		EA04DBCC19A3C9C400C90668 /* Release */ = {
+		EA04DC2D19A3D18000C90668 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ASDP Sampler.app/ASDP Sampler";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ASDP Sampler Tests/ASDP Sampler Tests-Prefix.pch";
 				INFOPLIST_FILE = "ASDP Sampler Tests/ASDP Sampler Tests-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -511,11 +510,11 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		EA04DBCD19A3C9C400C90668 /* Build configuration list for PBXNativeTarget "ASDP Sampler Tests" */ = {
+		EA04DC2B19A3D18000C90668 /* Build configuration list for PBXNativeTarget "ASDP Sampler Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				EA04DBCB19A3C9C400C90668 /* Debug */,
-				EA04DBCC19A3C9C400C90668 /* Release */,
+				EA04DC2C19A3D18000C90668 /* Debug */,
+				EA04DC2D19A3D18000C90668 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
