@@ -42,7 +42,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EA04DC1B19A3D18000C90668"
+               BlueprintIdentifier = "EAE6028819A3D4D2000977ED"
                BuildableName = "ASDP Sampler Tests.xctest"
                BlueprintName = "ASDP Sampler Tests"
                ReferencedContainer = "container:ASDP Sampler.xcodeproj">

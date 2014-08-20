@@ -10,4 +10,8 @@
 
 @interface CategoriesViewController : UITableViewController
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *logoutItem;
+
+- (IBAction)logout:(id)sender;
+
 @end

@@ -29,6 +29,7 @@
 		EAB9623119A270C400211848 /* APISpecRaw.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB9623019A270C400211848 /* APISpecRaw.m */; };
 		EAB9623519A27F9100211848 /* APISpec.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB9623419A27F9100211848 /* APISpec.m */; };
 		EAE6028E19A3D4D2000977ED /* ASDP_Sampler_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE6028D19A3D4D2000977ED /* ASDP_Sampler_Tests.m */; };
+		EAF21B1B19A55E8C0012A52B /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF21B1A19A55E8C0012A52B /* MainWindow.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,7 @@
 		EAE6028919A3D4D2000977ED /* ASDP Sampler Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ASDP Sampler Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAE6028C19A3D4D2000977ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EAE6028D19A3D4D2000977ED /* ASDP_Sampler_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASDP_Sampler_Tests.m; sourceTree = "<group>"; };
+		EAF21B1A19A55E8C0012A52B /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +158,7 @@
 				EA2BC0D219A414AD00613FD2 /* LoginViewController.m */,
 				BB9F7881089B478FE181F22A /* CustomSplitViewController.m */,
 				BB9F7801565712E588C3EE49 /* CustomSplitViewController.h */,
+				EAF21B1A19A55E8C0012A52B /* MainWindow.xib */,
 			);
 			path = "ASDP Sampler";
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 				EA2C55DA199C1CF5009ECA4A /* Main_iPad.storyboard in Resources */,
 				EA2C55E2199C1CF5009ECA4A /* Images.xcassets in Resources */,
 				EA2C55D7199C1CF5009ECA4A /* Main_iPhone.storyboard in Resources */,
+				EAF21B1B19A55E8C0012A52B /* MainWindow.xib in Resources */,
 				EAB523B719A553EE0091C453 /* Settings.bundle in Resources */,
 				EA2C55CE199C1CF5009ECA4A /* InfoPlist.strings in Resources */,
 			);
@@ -489,7 +493,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "ASDP Sampler Tests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -508,7 +512,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "ASDP Sampler Tests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";

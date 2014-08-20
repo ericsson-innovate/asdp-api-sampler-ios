@@ -99,8 +99,18 @@
 
         dispatch_async(dispatch_get_main_queue(), ^{
             if (result.isSuccess)
-                [self performSegueWithIdentifier:@"loginSuccess" sender:self];
-            else
+            {
+                NSString *storyboardName;
+                
+                if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
+                    storyboardName = @"Main_iPad";
+                else
+                    storyboardName = @"Main_iPhone";
+                
+                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
+                UIWindow *mainWindow = [[[UIApplication sharedApplication] windows] firstObject];
+                [mainWindow setRootViewController:[storyboard instantiateInitialViewController]];
+            } else
                 [[[UIAlertView alloc] initWithTitle:@"Error occurred" message:result.message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
             
             _requestIsLoading = NO;
