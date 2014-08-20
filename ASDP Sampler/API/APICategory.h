@@ -9,7 +9,8 @@
 #define kAPICategoryNames @{ \
                                @"know-driver" : @"Know Driver", \
                                @"know-car" : @"Know Car", \
-                               @"control-car" : @"Control Car" \
+                               @"control-car" : @"Control Car", \
+                               @"internal" : @"Internal" \
                            }
 
 @interface APICategory : NSObject <JSONObjectCoding>
