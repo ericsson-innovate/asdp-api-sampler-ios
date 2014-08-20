@@ -74,7 +74,7 @@
 		EAB9622A19A26DC400211848 /* APIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
 		EAB9622F19A270C400211848 /* APISpecRaw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APISpecRaw.h; sourceTree = "<group>"; };
 		EAB9623019A270C400211848 /* APISpecRaw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APISpecRaw.m; sourceTree = "<group>"; };
-		EAB9623219A27E0600211848 /* JSONCoding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JSONCoding.h; path = "ASDP Sampler/JSONCoding.h"; sourceTree = SOURCE_ROOT; };
+		EAB9623219A27E0600211848 /* JSONObjectCoding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JSONObjectCoding.h; path = "ASDP Sampler/JSONObjectCoding.h"; sourceTree = SOURCE_ROOT; };
 		EAB9623319A27F9100211848 /* APISpec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APISpec.h; sourceTree = "<group>"; };
 		EAB9623419A27F9100211848 /* APISpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APISpec.m; sourceTree = "<group>"; };
 		EAE6028919A3D4D2000977ED /* ASDP Sampler Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ASDP Sampler Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -145,7 +145,7 @@
 				EA2C55DC199C1CF5009ECA4A /* CategoriesViewController.m */,
 				EA2C55DE199C1CF5009ECA4A /* DetailViewController.h */,
 				EA2C55DF199C1CF5009ECA4A /* DetailViewController.m */,
-				EAB9623219A27E0600211848 /* JSONCoding.h */,
+				EAB9623219A27E0600211848 /* JSONObjectCoding.h */,
 				EA2C55E1199C1CF5009ECA4A /* Images.xcassets */,
 				EA2C55CA199C1CF5009ECA4A /* Supporting Files */,
 				BB9F70ED11E5065E5DBE86ED /* CategoryViewController.m */,

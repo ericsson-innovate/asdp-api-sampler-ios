@@ -10,7 +10,7 @@
 #import "APISpecRaw.h"
 #import "JSONCoding.h"
 
-@interface APISpec : NSObject <JSONCoding>
+@interface APISpec : NSObject <JSONObjectCoding>
 
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *desc;

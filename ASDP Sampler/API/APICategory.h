@@ -12,7 +12,7 @@
                                @"control-car" : @"Control Car" \
                            }
 
-@interface APICategory : NSObject <JSONCoding>
+@interface APICategory : NSObject <JSONObjectCoding>
 
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSArray *specs;

@@ -11,7 +11,7 @@
 
 @class ResourceTable, Parameters;
 
-@interface APISpecRaw : NSObject <JSONCoding>
+@interface APISpecRaw : NSObject <JSONObjectCoding>
 
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *desc;
@@ -23,20 +23,20 @@
 
 @end
 
-@interface ResourceTable : NSObject <JSONCoding>
+@interface ResourceTable : NSObject <JSONObjectCoding>
 
 @property (nonatomic, strong) NSString *route;
 @property (nonatomic, strong) NSArray *verbs;
 
 @end
 
-@interface Parameters : NSObject <JSONCoding>
+@interface Parameters : NSObject <JSONObjectCoding>
 
 @property (nonatomic, strong) NSArray *requestBody;
 
 @end
 
-@interface RequestParam : NSObject <JSONCoding>
+@interface RequestParam : NSObject <JSONObjectCoding>
 
 @property (nonatomic, strong) NSString *desc;
 @property (nonatomic) BOOL required;

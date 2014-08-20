@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol JSONCoding <NSObject>
+@protocol JSONObjectCoding <NSObject>
 
 @required
 + (id) fromJSONObject:(NSDictionary *)json;
