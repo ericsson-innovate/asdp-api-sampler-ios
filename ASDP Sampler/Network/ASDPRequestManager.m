@@ -60,12 +60,12 @@
     if (error || !response || !responseData)
     {
         if (response)
-            return [[ASDPResult alloc] initWithStatusCode:response.statusCode];
+            return [[ASDPResult alloc] initWithStatusCode:(int)response.statusCode];
         else
             return [[ASDPResult alloc] initWithStatusCode:500];
     }
 
-    return [[ASDPResult alloc] initWithStatusCode:response.statusCode body:responseData];
+    return [[ASDPResult alloc] initWithStatusCode:(int)response.statusCode body:responseData];
 }
 // ## END 2.6.4-login
 
