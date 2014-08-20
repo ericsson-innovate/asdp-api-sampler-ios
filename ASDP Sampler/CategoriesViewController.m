@@ -10,6 +10,8 @@
 #import "APIManager.h"
 #import "APICategory.h"
 #import "CategoryViewController.h"
+#import "ASDPRequestManager.h"
+#import "AppDelegate.h"
 
 @implementation CategoriesViewController
 {
@@ -124,6 +126,14 @@
 //    }
 }
 
-- (IBAction)logout:(id)sender {
+- (IBAction)logout:(id)sender
+{
+    [[ASDPRequestManager sharedManager] logout];
+    
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    UIWindow *mainWindow = [[[UIApplication sharedApplication] windows] firstObject];
+    mainWindow.rootViewController = appDelegate.loginViewController;
+    [mainWindow makeKeyAndVisible];
 }
+
 @end

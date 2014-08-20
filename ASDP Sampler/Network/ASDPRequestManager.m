@@ -68,6 +68,11 @@
 }
 // ## END 2.6.4-login
 
+- (void) logout
+{
+    // TODO: implement this
+}
+
 - (NSURL *) buildURL:(NSString *)targetPath
 {
     NSString *targetURL = [NSString stringWithString:[ASDPRequestManager baseURL]];

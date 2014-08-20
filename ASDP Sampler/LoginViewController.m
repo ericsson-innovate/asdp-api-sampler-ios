@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "ASDPResult.h"
 #import "ASDPRequestManager.h"
+#import "AppDelegate.h"
 
 @interface LoginViewController () <UITextFieldDelegate>
 
@@ -29,6 +30,11 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    
+    if (!appDelegate.loginViewController)
+        appDelegate.loginViewController = self;
 
     self.vinTextField.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"vinNumber"];
 
@@ -100,6 +106,8 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             if (result.isSuccess)
             {
+                self.passwordTextField.text = @"";
+                
                 NSString *storyboardName;
                 
                 if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)

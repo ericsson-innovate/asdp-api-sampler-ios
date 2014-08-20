@@ -14,5 +14,6 @@
 + (ASDPRequestManager *) sharedManager;
 
 - (ASDPResult *) login:(NSDictionary *)params;
+- (void) logout;
 
 @end

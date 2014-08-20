@@ -10,6 +10,7 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
+@property (strong, nonatomic) UIViewController *loginViewController;
 @property (strong, nonatomic) UIWindow *window;
 
 @end
