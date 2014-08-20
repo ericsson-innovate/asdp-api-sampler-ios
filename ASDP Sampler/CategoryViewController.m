@@ -20,11 +20,14 @@
     [super awakeFromNib];
 }
 
-- (void) viewDidLoad
+- (DetailViewController *)detailViewController
 {
-    [super viewDidLoad];
-
-    self.detailViewController = (DetailViewController *) [[self.splitViewController.viewControllers lastObject] topViewController];
+    id viewController = [[self.splitViewController.viewControllers lastObject] topViewController];
+    
+    if ([viewController isKindOfClass:[DetailViewController class]])
+        return viewController;
+    else
+        return nil;
 }
 
 #pragma mark - Table View
@@ -72,7 +75,9 @@
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         APISpec *spec = self.category.specs[indexPath.row];
-        self.detailViewController.detailItem = spec;
+        
+        if (self.detailViewController)
+            self.detailViewController.detailItem = spec;
     }
 }
 

@@ -26,15 +26,15 @@
 
 + (APIManager *)sharedManager
 {
-    static APIManager *_sharedHelper = nil;
+    static APIManager *_sharedManager = nil;
     static dispatch_once_t onceToken;
     
     dispatch_once(&onceToken, ^{
-        if (!_sharedHelper)
-            _sharedHelper = [[APIManager alloc] init];
+        if (!_sharedManager)
+            _sharedManager = [[APIManager alloc] init];
     });
     
-    return _sharedHelper;
+    return _sharedManager;
 }
 
 - (void)loadSpecs

@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB9F7131E444FDA025BEC45E /* ASDPResult.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9F74681800B5B69B10FE5A /* ASDPResult.m */; };
 		BB9F77C7ABB4B81B8BAA3433 /* APICategory.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9F7747DA005BCBC455BAB9 /* APICategory.m */; };
+		BB9F7D6E5F55B9C6C66051BB /* CustomSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9F7881089B478FE181F22A /* CustomSplitViewController.m */; };
 		BB9F7F261FF60F647DC3C1E1 /* CategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9F70ED11E5065E5DBE86ED /* CategoryViewController.m */; };
+		EA2BC0D319A414AD00613FD2 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2BC0D219A414AD00613FD2 /* LoginViewController.m */; };
+		EA2BC0D619A41E1100613FD2 /* ASDPRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2BC0D519A41E1100613FD2 /* ASDPRequestManager.m */; };
 		EA2C55C4199C1CF5009ECA4A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2C55C3199C1CF5009ECA4A /* Foundation.framework */; };
 		EA2C55C6199C1CF5009ECA4A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2C55C5199C1CF5009ECA4A /* CoreGraphics.framework */; };
 		EA2C55C8199C1CF5009ECA4A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2C55C7199C1CF5009ECA4A /* UIKit.framework */; };
@@ -40,7 +44,15 @@
 		BB9F70D1BB7988C456C70919 /* CategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryViewController.h; sourceTree = "<group>"; };
 		BB9F70ED11E5065E5DBE86ED /* CategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryViewController.m; sourceTree = "<group>"; };
 		BB9F7298207F5ED828A01AB0 /* APICategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APICategory.h; sourceTree = "<group>"; };
+		BB9F74681800B5B69B10FE5A /* ASDPResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASDPResult.m; sourceTree = "<group>"; };
+		BB9F76E3785877618DDF11FC /* ASDPResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASDPResult.h; sourceTree = "<group>"; };
 		BB9F7747DA005BCBC455BAB9 /* APICategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APICategory.m; sourceTree = "<group>"; };
+		BB9F7801565712E588C3EE49 /* CustomSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSplitViewController.h; sourceTree = "<group>"; };
+		BB9F7881089B478FE181F22A /* CustomSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSplitViewController.m; sourceTree = "<group>"; };
+		EA2BC0D119A414AD00613FD2 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		EA2BC0D219A414AD00613FD2 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		EA2BC0D419A41E1100613FD2 /* ASDPRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASDPRequestManager.h; sourceTree = "<group>"; };
+		EA2BC0D519A41E1100613FD2 /* ASDPRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASDPRequestManager.m; sourceTree = "<group>"; };
 		EA2C55C0199C1CF5009ECA4A /* ASDP Sampler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ASDP Sampler.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA2C55C3199C1CF5009ECA4A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EA2C55C5199C1CF5009ECA4A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -138,6 +150,10 @@
 				EA2C55CA199C1CF5009ECA4A /* Supporting Files */,
 				BB9F70ED11E5065E5DBE86ED /* CategoryViewController.m */,
 				BB9F70D1BB7988C456C70919 /* CategoryViewController.h */,
+				EA2BC0D119A414AD00613FD2 /* LoginViewController.h */,
+				EA2BC0D219A414AD00613FD2 /* LoginViewController.m */,
+				BB9F7881089B478FE181F22A /* CustomSplitViewController.m */,
+				BB9F7801565712E588C3EE49 /* CustomSplitViewController.h */,
 			);
 			path = "ASDP Sampler";
 			sourceTree = "<group>";
@@ -171,6 +187,10 @@
 		EAB9622819A26D7B00211848 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				EA2BC0D419A41E1100613FD2 /* ASDPRequestManager.h */,
+				EA2BC0D519A41E1100613FD2 /* ASDPRequestManager.m */,
+				BB9F74681800B5B69B10FE5A /* ASDPResult.m */,
+				BB9F76E3785877618DDF11FC /* ASDPResult.h */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -294,11 +314,15 @@
 				EAB9623519A27F9100211848 /* APISpec.m in Sources */,
 				EA2C55D4199C1CF5009ECA4A /* AppDelegate.m in Sources */,
 				EA2C55DD199C1CF5009ECA4A /* CategoriesViewController.m in Sources */,
+				EA2BC0D319A414AD00613FD2 /* LoginViewController.m in Sources */,
+				EA2BC0D619A41E1100613FD2 /* ASDPRequestManager.m in Sources */,
 				EA2C55D0199C1CF5009ECA4A /* main.m in Sources */,
 				EAB9623119A270C400211848 /* APISpecRaw.m in Sources */,
 				EA2C55E0199C1CF5009ECA4A /* DetailViewController.m in Sources */,
 				BB9F77C7ABB4B81B8BAA3433 /* APICategory.m in Sources */,
 				BB9F7F261FF60F647DC3C1E1 /* CategoryViewController.m in Sources */,
+				BB9F7D6E5F55B9C6C66051BB /* CustomSplitViewController.m in Sources */,
+				BB9F7131E444FDA025BEC45E /* ASDPResult.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,6 +540,7 @@
 				EAE6029319A3D4D2000977ED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

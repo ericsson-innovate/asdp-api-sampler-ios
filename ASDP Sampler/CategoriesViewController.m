@@ -12,6 +12,9 @@
 #import "CategoryViewController.h"
 
 @implementation CategoriesViewController
+{
+    BOOL hasAddedObserver;
+}
 
 - (void)awakeFromNib
 {
@@ -25,9 +28,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    hasAddedObserver = NO;
 
     if ([APIManager sharedManager].state != APIManagerStateComplete)
+    {
         [[APIManager sharedManager] addObserver:self forKeyPath:@"state" options:0 context:nil];
+        hasAddedObserver = YES;
+    }
 }
 
 - (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -46,10 +54,15 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if ([APIManager sharedManager].state == APIManagerStateComplete) {
-        @try {
-            [[APIManager sharedManager] removeObserver:self forKeyPath:@"state"];
-        } @catch (__unused NSException *ex) { }
+    if ([APIManager sharedManager].state == APIManagerStateComplete)
+    {
+        if (hasAddedObserver)
+        {
+            @try {
+                [[APIManager sharedManager] removeObserver:self forKeyPath:@"state"];
+                hasAddedObserver = NO;
+            } @catch (__unused NSException *ex) { }
+        }
 
         return [APIManager sharedManager].categories.count;
     } else

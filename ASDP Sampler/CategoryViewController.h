@@ -11,7 +11,7 @@
 
 @interface CategoryViewController : UITableViewController
 
-@property (strong, nonatomic) DetailViewController *detailViewController;
+@property (strong, nonatomic, readonly) DetailViewController *detailViewController;
 @property (strong, nonatomic) APICategory *category;
 
 @end

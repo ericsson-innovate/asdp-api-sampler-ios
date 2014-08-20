@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "APISpec.h"
 
-@interface DetailViewController : UIViewController <UISplitViewControllerDelegate>
+@interface DetailViewController : UIViewController
 
 @property (strong, nonatomic) APISpec *detailItem;
-
+@property (strong, nonatomic) UIPopoverController *masterPopoverController;
 @property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+
 @end
