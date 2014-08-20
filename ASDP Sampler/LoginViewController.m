@@ -27,9 +27,11 @@
     BOOL _requestIsLoading;
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+
+    self.vinTextField.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"vinNumber"];
+
     _requestIsLoading = NO;
     
     [self updateUIState];

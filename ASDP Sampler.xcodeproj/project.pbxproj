@@ -24,6 +24,7 @@
 		EA2C55DD199C1CF5009ECA4A /* CategoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2C55DC199C1CF5009ECA4A /* CategoriesViewController.m */; };
 		EA2C55E0199C1CF5009ECA4A /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2C55DF199C1CF5009ECA4A /* DetailViewController.m */; };
 		EA2C55E2199C1CF5009ECA4A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA2C55E1199C1CF5009ECA4A /* Images.xcassets */; };
+		EAB523B719A553EE0091C453 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EAB523B619A553EE0091C453 /* Settings.bundle */; };
 		EAB9622B19A26DC400211848 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB9622A19A26DC400211848 /* APIManager.m */; };
 		EAB9623119A270C400211848 /* APISpecRaw.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB9623019A270C400211848 /* APISpecRaw.m */; };
 		EAB9623519A27F9100211848 /* APISpec.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB9623419A27F9100211848 /* APISpec.m */; };
@@ -70,6 +71,7 @@
 		EA2C55DE199C1CF5009ECA4A /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		EA2C55DF199C1CF5009ECA4A /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		EA2C55E1199C1CF5009ECA4A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		EAB523B619A553EE0091C453 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		EAB9622919A26DC400211848 /* APIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
 		EAB9622A19A26DC400211848 /* APIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
 		EAB9622F19A270C400211848 /* APISpecRaw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APISpecRaw.h; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 		EA2C55CA199C1CF5009ECA4A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				EAB523B619A553EE0091C453 /* Settings.bundle */,
 				EA2C55CB199C1CF5009ECA4A /* ASDP Sampler-Info.plist */,
 				EA2C55CC199C1CF5009ECA4A /* InfoPlist.strings */,
 				EA2C55CF199C1CF5009ECA4A /* main.m */,
@@ -292,6 +295,7 @@
 				EA2C55DA199C1CF5009ECA4A /* Main_iPad.storyboard in Resources */,
 				EA2C55E2199C1CF5009ECA4A /* Images.xcassets in Resources */,
 				EA2C55D7199C1CF5009ECA4A /* Main_iPhone.storyboard in Resources */,
+				EAB523B719A553EE0091C453 /* Settings.bundle in Resources */,
 				EA2C55CE199C1CF5009ECA4A /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

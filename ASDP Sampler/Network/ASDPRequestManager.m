@@ -25,11 +25,10 @@
 
 + (NSString *) baseURL
 {
-    return @"http://lightning.att.io:3000/";
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"baseURL"];
 }
 
 // ## START 2.6.4-login
-
 - (ASDPResult *) login:(NSDictionary *)params
 {
     NSString *username = params[@"username"];

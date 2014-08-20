@@ -18,12 +18,42 @@
 //        UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
 //        splitViewController.delegate = (id)navigationController.topViewController;
 //    }
+    
+    NSUserDefaults * standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    NSString * preference = [standardUserDefaults objectForKey:@"baseURL"];
+
+    if (!preference)
+        [self registerDefaultsFromSettingsBundle];
 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         [[APIManager sharedManager] loadSpecs];
     });
 
     return YES;
+}
+
+- (void)registerDefaultsFromSettingsBundle {
+    // this function writes default settings as settings
+    NSString *settingsBundle = [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"bundle"];
+
+    if (!settingsBundle) {
+        NSLog(@"Could not find Settings.bundle");
+        return;
+    }
+
+    NSDictionary *settings = [NSDictionary dictionaryWithContentsOfFile:[settingsBundle stringByAppendingPathComponent:@"Root.plist"]];
+    NSArray *preferences = settings[@"PreferenceSpecifiers"];
+
+    NSMutableDictionary *defaultsToRegister = [[NSMutableDictionary alloc] initWithCapacity:[preferences count]];
+    for(NSDictionary *prefSpecification in preferences) {
+        NSString *key = prefSpecification[@"Key"];
+        if(key) {
+            defaultsToRegister[key] = prefSpecification[@"DefaultValue"];
+            NSLog(@"writing as default %@ to the key %@", prefSpecification[@"DefaultValue"], key);
+        }
+    }
+
+    [[NSUserDefaults standardUserDefaults] registerDefaults:defaultsToRegister];
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
