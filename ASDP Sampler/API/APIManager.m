@@ -97,12 +97,15 @@
             [specDictionary enumerateKeysAndObjectsUsingBlock:^(NSString *category, NSMutableArray *specs, BOOL *stop) {
                 APICategory *apiCategory = [[APICategory alloc] init];
                 apiCategory.name = category;
-                apiCategory.specs = [NSArray arrayWithArray:specs];
+                
+                NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
+                apiCategory.specs = [specs sortedArrayUsingDescriptors:@[sort]];
 
                 [categories addObject:apiCategory];
             }];
 
-            _categories = [NSArray arrayWithArray:categories];
+            NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
+            _categories = [categories sortedArrayUsingDescriptors:@[sort]];
 
             self.state = APIManagerStateComplete;
         }
