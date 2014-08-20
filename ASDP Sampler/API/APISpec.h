@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "APISpecRaw.h"
-#import "JSONCoding.h"
+#import "JSONObjectCoding.h"
 
 @interface APISpec : NSObject <JSONObjectCoding>
 

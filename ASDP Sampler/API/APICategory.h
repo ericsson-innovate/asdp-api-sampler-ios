@@ -4,7 +4,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "JSONCoding.h"
+#import "JSONObjectCoding.h"
 
 #define kAPICategoryNames @{ \
                                @"know-driver" : @"Know Driver", \

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "JSONCoding.h"
+#import "JSONObjectCoding.h"
 
 @class ResourceTable, Parameters;
 
