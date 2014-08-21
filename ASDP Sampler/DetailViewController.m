@@ -159,12 +159,4 @@
 
 // TODO: respond to keyboard events for iPhone, mostly
 
-#pragma mark - Actions
-
-- (IBAction)toggleHeaders:(id)sender {
-}
-
-- (IBAction)toggleOutput:(id)sender {
-}
-
 @end

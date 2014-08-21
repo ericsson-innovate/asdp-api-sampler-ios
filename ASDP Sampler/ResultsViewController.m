@@ -46,4 +46,12 @@
 }
 */
 
+#pragma mark - Actions
+
+- (IBAction)toggleHeaders:(id)sender {
+}
+
+- (IBAction)toggleOutput:(id)sender {
+}
+
 @end
