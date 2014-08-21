@@ -60,7 +60,6 @@
 
     cell.textLabel.enabled = isSupported;
     cell.detailTextLabel.enabled = isSupported;
-    cell.userInteractionEnabled = isSupported;
 
     return cell;
 }

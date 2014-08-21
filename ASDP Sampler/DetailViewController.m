@@ -8,11 +8,88 @@
 
 #import "DetailViewController.h"
 
-@interface DetailViewController ()
+
+@interface DetailViewController () <UITableViewDelegate, UITableViewDataSource>
+
+@property (strong, nonatomic) UINavigationItem *sendItem;
+@property (strong, nonatomic) UIActivityIndicatorView *activityIndicator;
+
+@property (weak, nonatomic) IBOutlet UINavigationItem *titleItem;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (weak, nonatomic) IBOutlet UITableView *parametersTableView;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *transactionSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *headersSwitch;
+@property (weak, nonatomic) IBOutlet UITextView *outputTextView;
+
+- (IBAction)toggleHeaders:(id)sender;
+- (IBAction)toggleOutput:(id)sender;
+
 - (void)configureView;
+
 @end
 
 @implementation DetailViewController
+{
+    UILabel *_initialView;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    self.sendItem = [[UINavigationItem alloc] initWithTitle:@"Send"];
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    
+    self.state = DetailStateInitial;
+}
+
+- (void) setState:(DetailState)state
+{
+    _state = state;
+    
+    [self configureView];
+}
+
+- (void) configureView
+{
+    switch (self.state)
+    {
+        case DetailStateInitial:
+            [self.titleItem setTitle:@""];
+
+            _initialView = [[UILabel alloc] initWithFrame:self.view.bounds];
+            [_initialView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+            [_initialView setTextAlignment:NSTextAlignmentCenter];
+            [_initialView setText:@"Select an API to begin"];
+            [_initialView setBackgroundColor:[UIColor whiteColor]];
+
+            [self.view addSubview:_initialView];
+            break;
+
+        case DetailStateStart:
+            if (_initialView)
+            {
+                [_initialView removeFromSuperview];
+                _initialView = nil;
+            }
+
+            [self.titleItem setTitle:self.detailItem.name];
+
+            self.descriptionLabel.text = [NSString stringWithFormat:@"[%@] %@", self.detailItem.docNumber, self.detailItem.desc];
+            self.descriptionLabel.numberOfLines = 0;
+            [self.descriptionLabel sizeToFit];
+
+            [self.view setNeedsUpdateConstraints];
+            [self.view setNeedsLayout];
+            
+            [self.parametersTableView setDataSource:self];
+            [self.parametersTableView setDelegate:self];
+            [self.parametersTableView reloadData];
+            break;
+            
+        default:break;
+    }
+}
 
 #pragma mark - Managing the detail item
 
@@ -20,60 +97,72 @@
 {
     if (_detailItem != newDetailItem) {
         _detailItem = newDetailItem;
-        
-        // Update the view.
-        [self configureView];
+
+        self.state = DetailStateStart;
     }
 
     if (self.masterPopoverController != nil) {
         [self.masterPopoverController dismissPopoverAnimated:YES];
-    }        
-}
-
-- (void)configureView
-{
-    // Update the user interface for the detail item.
-
-    if (self.detailItem) {
-        self.detailDescriptionLabel.text = self.detailItem.name;
     }
+
+    [self.parametersTableView reloadData];
 }
 
-- (void)viewDidLoad
+#pragma mark - Table View Delegate
+
+- (BOOL) tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    [self configureView];
-    
-//    NSString *username = @"provider";
-//    NSString *password = @"1234";
-//    NSString *authString = [NSString stringWithFormat:@"%@:%@", username, password];
-//    NSData *authData = [authString dataUsingEncoding:NSASCIIStringEncoding];
-//    NSString *authorization = [NSString stringWithFormat:@"Basic %@", [authData base64EncodedStringWithOptions:0]];
-//
-//    NSString *bodyString = @"{}";
-//    NSData *bodyData = [bodyString dataUsingEncoding:NSUTF8StringEncoding];
-//
-//    NSString *requestPath = @"http://lightning.att.io:3000/remoteservices/v1/vehicle/engineOn/1234";
-//    NSURL *requestURL = [NSURL URLWithString:requestPath];
-//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
-//    [request setHTTPMethod:@"POST"];
-//    [request setAllHTTPHeaderFields:@{
-//                                      @"Authorization" : authorization,
-//                                      @"APIKey" : @"1234",
-//                                      @"Content-Type" : @"application/json"
-//                                      }];
-//    [request setHTTPBody:bodyData];
-//    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-//        NSString *dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//    }];
-    
+    return NO;
 }
 
-- (void)didReceiveMemoryWarning
+#pragma mark - Table View Data Source
+
+- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    return 1;
+}
+
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (self.detailItem)
+        return self.detailItem.requestParams.count;
+    else
+        return 0;
+}
+
+- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RequestCell" forIndexPath:indexPath];
+
+    RequestParam *param = self.detailItem.requestParams[indexPath.row];
+
+    UILabel *paramTitleLabel = (UILabel *) [cell.contentView viewWithTag:101];
+    UILabel *paramDescLabel = (UILabel *) [cell.contentView viewWithTag:102];
+
+    paramTitleLabel.text = param.key;
+    paramDescLabel.text = param.desc;
+
+    if (param.defaultValue)
+    {
+        UILabel *valueLabel = (UILabel *) [cell.contentView viewWithTag:103];
+        valueLabel.text = param.defaultValue;
+    }
+
+    if (param.required)
+    {
+        UILabel *requiredLabel = (UILabel *) [cell.contentView viewWithTag:104];
+        requiredLabel.text = @"(required)";
+    }
+
+    return cell;
+}
+
+#pragma mark - Actions
+
+- (IBAction)toggleHeaders:(id)sender {
+}
+
+- (IBAction)toggleOutput:(id)sender {
 }
 
 @end

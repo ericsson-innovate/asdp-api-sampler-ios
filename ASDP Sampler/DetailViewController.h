@@ -9,8 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "APISpec.h"
 
-@interface DetailViewController : UIViewController
 
+@interface DetailViewController : UIViewController
+enum {
+    DetailStateInitial = 0,
+    DetailStateStart,
+    DetailStateLoading,
+    DetailStateComplete,
+    DetailStateCompleteWithAction
+};
+typedef NSUInteger DetailState;
+
+@property (nonatomic) DetailState state;
 @property (strong, nonatomic) APISpec *detailItem;
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
 @property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
