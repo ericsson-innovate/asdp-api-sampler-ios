@@ -47,10 +47,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SpecCell" forIndexPath:indexPath];
 
     APISpec *spec = self.category.specs[indexPath.row];
     cell.textLabel.text = spec.name;
+    
+    cell.detailTextLabel.text = spec.desc;
+    [cell.detailTextLabel setNumberOfLines:5];
+    [cell.detailTextLabel sizeToFit];
 
     return cell;
 }

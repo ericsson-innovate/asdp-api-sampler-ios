@@ -73,7 +73,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CategoryCell" forIndexPath:indexPath];
 
     APICategory *category = [APIManager sharedManager].categories[indexPath.row];
     NSString *categoryName = kAPICategoryNames[category.name];
@@ -82,6 +82,9 @@
         categoryName = category.name;
 
     cell.textLabel.text = categoryName;
+
+    NSString *apiAmount = [NSString stringWithFormat:@"%d apis available", category.specs.count];
+    cell.detailTextLabel.text = apiAmount;
 
     return cell;
 }
