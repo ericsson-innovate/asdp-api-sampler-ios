@@ -104,6 +104,10 @@
         ASDPResult *result = [[ASDPRequestManager sharedManager] login:params];
 
         dispatch_async(dispatch_get_main_queue(), ^{
+            _requestIsLoading = NO;
+
+            [self updateUIState];
+
             if (result.isSuccess)
             {
                 self.passwordTextField.text = @"";
@@ -120,10 +124,6 @@
                 [mainWindow setRootViewController:[storyboard instantiateInitialViewController]];
             } else
                 [[[UIAlertView alloc] initWithTitle:@"Error occurred" message:result.message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-            
-            _requestIsLoading = NO;
-            
-            [self updateUIState];
         });
     });
 }
