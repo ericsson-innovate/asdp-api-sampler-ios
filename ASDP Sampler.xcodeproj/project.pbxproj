@@ -25,6 +25,7 @@
 		EA2C55E0199C1CF5009ECA4A /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2C55DF199C1CF5009ECA4A /* DetailViewController.m */; };
 		EA2C55E2199C1CF5009ECA4A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA2C55E1199C1CF5009ECA4A /* Images.xcassets */; };
 		EA6274AF19A66331006090BE /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA6274AD19A66331006090BE /* MainWindow.xib */; };
+		EA9E1B3719A6B4EC00035BDA /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9E1B3619A6B4EC00035BDA /* ResultsViewController.m */; };
 		EAB523B719A553EE0091C453 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EAB523B619A553EE0091C453 /* Settings.bundle */; };
 		EAB9622B19A26DC400211848 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB9622A19A26DC400211848 /* APIManager.m */; };
 		EAB9623119A270C400211848 /* APISpecRaw.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB9623019A270C400211848 /* APISpecRaw.m */; };
@@ -73,6 +74,8 @@
 		EA2C55DF199C1CF5009ECA4A /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		EA2C55E1199C1CF5009ECA4A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		EA6274AE19A66331006090BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		EA9E1B3519A6B4EC00035BDA /* ResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsViewController.h; sourceTree = "<group>"; };
+		EA9E1B3619A6B4EC00035BDA /* ResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsViewController.m; sourceTree = "<group>"; };
 		EAB523B619A553EE0091C453 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		EAB9622919A26DC400211848 /* APIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
 		EAB9622A19A26DC400211848 /* APIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
@@ -152,6 +155,8 @@
 				BB9F70ED11E5065E5DBE86ED /* CategoryViewController.m */,
 				EA2C55DE199C1CF5009ECA4A /* DetailViewController.h */,
 				EA2C55DF199C1CF5009ECA4A /* DetailViewController.m */,
+				EA9E1B3519A6B4EC00035BDA /* ResultsViewController.h */,
+				EA9E1B3619A6B4EC00035BDA /* ResultsViewController.m */,
 				BB9F7801565712E588C3EE49 /* CustomSplitViewController.h */,
 				BB9F7881089B478FE181F22A /* CustomSplitViewController.m */,
 				EA2C55E1199C1CF5009ECA4A /* Images.xcassets */,
@@ -327,6 +332,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EAB9622B19A26DC400211848 /* APIManager.m in Sources */,
+				EA9E1B3719A6B4EC00035BDA /* ResultsViewController.m in Sources */,
 				EAB9623519A27F9100211848 /* APISpec.m in Sources */,
 				EA2C55D4199C1CF5009ECA4A /* AppDelegate.m in Sources */,
 				EA2C55DD199C1CF5009ECA4A /* CategoriesViewController.m in Sources */,

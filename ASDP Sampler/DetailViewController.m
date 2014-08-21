@@ -7,6 +7,7 @@
 //
 
 #import "DetailViewController.h"
+#import "ResultsViewController.h"
 
 
 @interface DetailViewController () <UITableViewDelegate, UITableViewDataSource>
@@ -14,15 +15,10 @@
 @property (strong, nonatomic) UINavigationItem *sendItem;
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicator;
 
+@property (weak, nonatomic) IBOutlet UIView *resultsViewController;
 @property (weak, nonatomic) IBOutlet UINavigationItem *titleItem;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UITableView *parametersTableView;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *transactionSwitch;
-@property (weak, nonatomic) IBOutlet UISwitch *headersSwitch;
-@property (weak, nonatomic) IBOutlet UITextView *outputTextView;
-
-- (IBAction)toggleHeaders:(id)sender;
-- (IBAction)toggleOutput:(id)sender;
 
 - (void)configureView;
 
@@ -58,6 +54,7 @@
             [self.titleItem setTitle:@""];
 
             _initialView = [[UILabel alloc] initWithFrame:self.view.bounds];
+            [_initialView setTag:99];
             [_initialView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
             [_initialView setTextAlignment:NSTextAlignmentCenter];
             [_initialView setText:@"Select an API to begin"];
@@ -67,6 +64,9 @@
             break;
 
         case DetailStateStart:
+            if (!_initialView)
+                _initialView = (UILabel *) [self.view viewWithTag:99];
+            
             if (_initialView)
             {
                 [_initialView removeFromSuperview];
@@ -156,6 +156,8 @@
 
     return cell;
 }
+
+// TODO: respond to keyboard events for iPhone, mostly
 
 #pragma mark - Actions
 

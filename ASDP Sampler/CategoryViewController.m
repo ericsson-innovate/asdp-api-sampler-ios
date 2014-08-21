@@ -92,11 +92,14 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-//    if ([[segue identifier] isEqualToString:@"showDetail"] && [segue.destinationViewController isKindOfClass:[DetailViewController class]]) {
-//        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-//        APISpec *spec = self.category.specs[indexPath.row];
-//        [((DetailViewController *) [segue destinationViewController]) setDetailItem:spec];
-//    }
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+        return;
+    
+    if ([[segue identifier] isEqualToString:@"showDetail"] && [segue.destinationViewController isKindOfClass:[DetailViewController class]]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        APISpec *spec = self.category.specs[indexPath.row];
+        [((DetailViewController *) [segue destinationViewController]) setDetailItem:spec];
+    }
 }
 
 @end
