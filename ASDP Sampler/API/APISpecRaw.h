@@ -42,5 +42,6 @@
 @property (nonatomic) BOOL required;
 @property (nonatomic, strong) NSString *type;
 @property (nonatomic, strong) NSString *key;
+@property (nonatomic, strong) NSString *defaultValue;
 
 @end

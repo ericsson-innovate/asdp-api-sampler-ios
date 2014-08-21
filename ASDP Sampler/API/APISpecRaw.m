@@ -126,6 +126,7 @@
     requestParam.type = json[@"type"];
     requestParam.required = [json[@"required"] boolValue];
     requestParam.desc = json[@"description"];
+    requestParam.defaultValue = json[@"defaultVal"];
 
     return requestParam;
 }
@@ -136,7 +137,8 @@
             @"key" : self.key,
             @"type" : self.type,
             @"required" : @(self.required),
-            @"description" : self.desc
+            @"description" : self.desc,
+            @"defaultVal" : self.defaultValue
     };
 }
 
