@@ -100,32 +100,29 @@
             @"vin" : self.vinTextField.text
     };
 
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        ASDPResult *result = [[ASDPRequestManager sharedManager] login:params];
 
-        dispatch_async(dispatch_get_main_queue(), ^{
-            _requestIsLoading = NO;
+    [[ASDPRequestManager sharedManager] login:params completion:^(ASDPResult *result) {
+        _requestIsLoading = NO;
 
-            [self updateUIState];
+        [self updateUIState];
 
-            if (result.isSuccess)
-            {
-                self.passwordTextField.text = @"";
-                
-                NSString *storyboardName;
-                
-                if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
-                    storyboardName = @"Main_iPad";
-                else
-                    storyboardName = @"Main_iPhone";
-                
-                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
-                UIWindow *mainWindow = [[[UIApplication sharedApplication] windows] firstObject];
-                [mainWindow setRootViewController:[storyboard instantiateInitialViewController]];
-            } else
-                [[[UIAlertView alloc] initWithTitle:@"Error occurred" message:result.message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-        });
-    });
+        if (result.isSuccess)
+        {
+            self.passwordTextField.text = @"";
+
+            NSString *storyboardName;
+
+            if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
+                storyboardName = @"Main_iPad";
+            else
+                storyboardName = @"Main_iPhone";
+
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
+            UIWindow *mainWindow = [[[UIApplication sharedApplication] windows] firstObject];
+            [mainWindow setRootViewController:[storyboard instantiateInitialViewController]];
+        } else
+            [[[UIAlertView alloc] initWithTitle:@"Error occurred" message:result.message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    }];
 }
 
 @end

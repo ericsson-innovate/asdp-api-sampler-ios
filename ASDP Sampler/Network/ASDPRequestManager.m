@@ -29,42 +29,57 @@
 }
 
 // ## START 2.6.4-login
-- (ASDPResult *) login:(NSDictionary *)params
+- (void) login:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
 {
-    NSString *username = params[@"username"];
-    NSString *pin = params[@"pin"];
-    NSString *vin = params[@"vin"];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        ASDPResult *result;
 
-    if (!username || !pin || !vin)
-        return [[ASDPResult alloc] initWithStatusCode:400];
+        NSString *username = params[@"username"];
+        NSString *pin = params[@"pin"];
+        NSString *vin = params[@"vin"];
 
-    NSString *authString = [NSString stringWithFormat:@"%@:%@", username, pin];
-    NSData *authData = [authString dataUsingEncoding:NSASCIIStringEncoding];
-    NSString *authorization = [NSString stringWithFormat:@"Basic %@", [authData base64EncodedStringWithOptions:0]];
+        if (username && pin && vin)
+        {
+            NSString *authString = [NSString stringWithFormat:@"%@:%@", username, pin];
+            NSData *authData = [authString dataUsingEncoding:NSASCIIStringEncoding];
+            NSString *authorization = [NSString stringWithFormat:@"Basic %@", [authData base64EncodedStringWithOptions:0]];
 
-    NSString *requestPath = [NSString stringWithFormat:@"remoteservices/v1/vehicle/login/%@", vin];
-    NSURL *requestURL = [self buildURL:requestPath];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
-    [request setHTTPMethod:@"POST"];
-    [request setAllHTTPHeaderFields:@{
-            @"Authorization" : authorization,
-            @"APIKey" : pin,
-            @"Content-Type" : @"application/json"
-    }];
+            NSString *requestPath = [NSString stringWithFormat:@"remoteservices/v1/vehicle/login/%@", vin];
+            NSURL *requestURL = [self buildURL:requestPath];
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
+            [request setHTTPMethod:@"POST"];
+            [request setAllHTTPHeaderFields:@{
+                    @"Authorization" : authorization,
+                    @"APIKey" : pin,
+                    @"Content-Type" : @"application/json"
+            }];
 
-    NSHTTPURLResponse *response;
-    NSError *error;
-    NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+            NSHTTPURLResponse *response;
+            NSError *error;
+            NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
 
-    if (error || !response || !responseData)
-    {
-        if (response)
-            return [[ASDPResult alloc] initWithStatusCode:(int)response.statusCode];
-        else
-            return [[ASDPResult alloc] initWithStatusCode:500];
-    }
+            if (error || !response || !responseData)
+            {
+                if (response)
+                    result = [[ASDPResult alloc] initWithStatusCode:(int) response.statusCode];
+                else
+                    result = [[ASDPResult alloc] initWithStatusCode:500];
+            } else
+            {
+                result = [[ASDPResult alloc] initWithStatusCode:(int) response.statusCode body:responseData];
+            }
+        } else
+        {
+            result = [[ASDPResult alloc] initWithStatusCode:400];
+        }
 
-    return [[ASDPResult alloc] initWithStatusCode:(int)response.statusCode body:responseData];
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(result);
+            });
+        }
+    });
 }
 // ## END 2.6.4-login
 

@@ -11,9 +11,11 @@
 
 @interface ASDPRequestManager : NSObject
 
+typedef void (^ ASDPRequestCompletionBlock)(ASDPResult *result);
+
 + (ASDPRequestManager *) sharedManager;
 
-- (ASDPResult *) login:(NSDictionary *)params;
+- (void) login:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion;
 - (void) logout;
 
 @end
