@@ -56,6 +56,12 @@
     [cell.detailTextLabel setNumberOfLines:5];
     [cell.detailTextLabel sizeToFit];
 
+    BOOL isSupported = [[APIManager sharedManager] isSupported:spec];
+
+    cell.textLabel.enabled = isSupported;
+    cell.detailTextLabel.enabled = isSupported;
+    cell.userInteractionEnabled = isSupported;
+
     return cell;
 }
 

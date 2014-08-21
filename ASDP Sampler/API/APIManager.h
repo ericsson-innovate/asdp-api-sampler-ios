@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "APISpecRaw.h"
+#import "APISpec.h"
 
 #define kRemoteAPISpecURL [NSURL URLWithString:@"https://ericsson-innovate.github.io/hackathon-portal/dist/data/specifications.json"]
 
@@ -26,7 +26,7 @@ typedef NSUInteger APIManagerState;
 + (APIManager *) sharedManager;
 
 - (void) loadSpecs;
-- (BOOL) isSupported:(APISpecRaw *)spec;
+- (BOOL) isSupported:(APISpec *)spec;
 - (NSHTTPURLResponse *) executeAPI:(APISpecRaw *)spec params:(NSDictionary *)params request:(NSURLRequest **)request error:(NSError **)error;
 
 @property (nonatomic, strong) NSArray *categories;

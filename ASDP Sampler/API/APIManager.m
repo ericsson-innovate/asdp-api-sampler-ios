@@ -9,6 +9,7 @@
 #import "APIManager.h"
 #import "APISpec.h"
 #import "APICategory.h"
+#import "ASDPRequestManager.h"
 
 @implementation APIManager
 
@@ -112,10 +113,49 @@
     }
 }
 
-- (BOOL) isSupported:(APISpecRaw *)spec
+- (BOOL) isSupported:(APISpec *)spec
 {
-    // TODO: use reflection to find method for the provided spec
-    return NO;
+    NSString *formattedAPIName = [self convertAPINameToSelectorName:spec];
+    NSString *apiSelectorName = [NSString stringWithFormat:@"%@:completion:", formattedAPIName];
+    SEL apiSelector = NSSelectorFromString(apiSelectorName);
+
+    return [[ASDPRequestManager sharedManager] respondsToSelector:apiSelector];
+}
+
+- (NSString *) convertAPINameToSelectorName:(APISpec *)spec
+{
+    NSString *specName = spec.name;
+
+    NSMutableString *selectorName = [NSMutableString new];
+    BOOL shouldCapitalize = NO;
+
+    for (int i = 0; i < specName.length; ++i)
+    {
+        int current = [specName characterAtIndex:i];
+        char space = ' ';
+
+        if (current == space)
+        {
+            shouldCapitalize = YES;
+            continue;
+        } else
+        {
+            NSString *charToAdd = [NSString stringWithFormat:@"%c", current];
+
+            if (shouldCapitalize)
+            {
+                charToAdd = [charToAdd uppercaseString];
+                shouldCapitalize = NO;
+            }
+
+            if (i == 0)
+                charToAdd = [charToAdd lowercaseString];
+
+            [selectorName appendString:charToAdd];
+        }
+    }
+
+    return selectorName;
 }
 
 - (NSHTTPURLResponse *) executeAPI:(APISpecRaw *)spec params:(NSDictionary *)params request:(NSURLRequest **)request error:(NSError **)error
