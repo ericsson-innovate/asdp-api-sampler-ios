@@ -215,7 +215,27 @@
 {
     self.state = DetailStateLoading;
 
-    [[ASDPRequestManager sharedManager] executeAPI:self.detailItem params:_storedValues completion:^(ASDPResult *result) {
+    NSMutableDictionary *requestParameters = [NSMutableDictionary new];
+
+    [_storedValues enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *value, BOOL *stop) {
+        unichar firstChar = [value characterAtIndex:0];
+
+        NSError *jsonError;
+        id textObject;
+
+        if (firstChar == '[' || firstChar == '{')
+        {
+            NSData *textData = [value dataUsingEncoding:NSUTF8StringEncoding];
+            textObject = [NSJSONSerialization JSONObjectWithData:textData options:nil error:&jsonError];
+        }
+
+        if (textObject && !jsonError)
+            requestParameters[key] = textObject;
+        else
+            requestParameters[key] = value;
+    }];
+
+    [[ASDPRequestManager sharedManager] executeAPI:self.detailItem params:requestParameters completion:^(ASDPResult *result) {
         _lastResult = result;
 
         self.state = DetailStateComplete;
