@@ -29,6 +29,12 @@ typedef void (^ ASDPRequestCompletionBlock)(ASDPResult *result);
 - (void) login:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion;
 - (void) doorUnlock:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion;
 - (void) doorLock:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion;
+- (void) engineOn:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion;
+- (void) engineOff:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion;
+- (void) honkAndBlink:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion;
+- (void) checkRequestStatus:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion;
+- (void) viewDiagnosticData:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion;
+- (void) getVehicleStatus:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion;
 // END 2.6.x APIs
 
 // START 2.16.x APIs

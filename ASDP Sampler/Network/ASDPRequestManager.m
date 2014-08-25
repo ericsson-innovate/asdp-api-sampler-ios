@@ -218,6 +218,164 @@
 }
 // ## END 2.6.6-door-lock
 
+// ## START 2.6.7-engine-on
+- (void) engineOn:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *requestPath = [NSString stringWithFormat:@"remoteservices/v1/vehicle/engineOn/%@", self.vin];
+        NSURL *requestURL = [self buildURL:requestPath];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
+        [request setHTTPMethod:@"POST"];
+        [request setAllHTTPHeaderFields:@{
+                @"Authorization" : self.authToken,
+                @"APIKey" : self.apiKey,
+                @"Content-Type" : @"application/json"
+        }];
+
+        ASDPResult *result = [self processRequest:request params:params];
+
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(result);
+            });
+        }
+    });
+}
+// ## END 2.6.7-engine-on
+
+// ## START 2.6.8-engine-off
+- (void) engineOff:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *requestPath = [NSString stringWithFormat:@"remoteservices/v1/vehicle/engineOff/%@", self.vin];
+        NSURL *requestURL = [self buildURL:requestPath];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
+        [request setHTTPMethod:@"POST"];
+        [request setAllHTTPHeaderFields:@{
+                @"Authorization" : self.authToken,
+                @"APIKey" : self.apiKey,
+                @"Content-Type" : @"application/json"
+        }];
+
+        ASDPResult *result = [self processRequest:request params:params];
+
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(result);
+            });
+        }
+    });
+}
+// ## END 2.6.8-engine-off
+
+// ## START 2.6.9-honk-and-blink
+- (void) honkAndBlink:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *requestPath = [NSString stringWithFormat:@"remoteservices/v1/vehicle/honkBlink/%@", self.vin];
+        NSURL *requestURL = [self buildURL:requestPath];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
+        [request setHTTPMethod:@"POST"];
+        [request setAllHTTPHeaderFields:@{
+                @"Authorization" : self.authToken,
+                @"APIKey" : self.apiKey,
+                @"Content-Type" : @"application/json"
+        }];
+
+        ASDPResult *result = [self processRequest:request params:params];
+
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(result);
+            });
+        }
+    });
+}
+// ## END 2.6.9-honk-and-blink
+
+// ## START 2.6.10-check-request-status
+- (void) checkRequestStatus:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        int requestId = [params[@"requestId"] intValue];
+
+        NSString *requestPath = [NSString stringWithFormat:@"remoteservices/v1/vehicle/status/%@/%d", self.vin, requestId];
+        NSURL *requestURL = [self buildURL:requestPath];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
+        [request setHTTPMethod:@"GET"];
+        [request setAllHTTPHeaderFields:@{
+                @"Authorization" : self.authToken,
+                @"APIKey" : self.apiKey,
+                @"Content-Type" : @"application/json"
+        }];
+
+        ASDPResult *result = [self processRequest:request params:nil];
+
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(result);
+            });
+        }
+    });
+}
+// ## END 2.6.10-check-request-status
+
+// ## START 2.6.11-view-diagnostic-data
+- (void) viewDiagnosticData:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *requestPath = [NSString stringWithFormat:@"remoteservices/v1/vehicle/diagnostics/view/%@", self.vin];
+        NSURL *requestURL = [self buildURL:requestPath];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
+        [request setHTTPMethod:@"POST"];
+        [request setAllHTTPHeaderFields:@{
+                @"Authorization" : self.authToken,
+                @"APIKey" : self.apiKey,
+                @"Content-Type" : @"application/json"
+        }];
+
+        ASDPResult *result = [self processRequest:request params:params];
+
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(result);
+            });
+        }
+    });
+}
+// ## END 2.6.11-view-diagnostic-data
+
+// ## START 2.6.12-get-vehicle-status
+- (void) getVehicleStatus:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *requestPath = [NSString stringWithFormat:@"remoteservices/v1/vehicle/status/view/%@", self.vin];
+        NSURL *requestURL = [self buildURL:requestPath];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
+        [request setHTTPMethod:@"POST"];
+        [request setAllHTTPHeaderFields:@{
+                @"Authorization" : self.authToken,
+                @"APIKey" : self.apiKey,
+                @"Content-Type" : @"application/json"
+        }];
+
+        ASDPResult *result = [self processRequest:request params:params];
+
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(result);
+            });
+        }
+    });
+}
+// ## END 2.6.12-get-vehicle-status
+
 // ## START 2.16.1-add-a-vehicle
 - (void) addAVehicle:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
 {
