@@ -88,8 +88,18 @@
     return [NSURL URLWithString:targetURL];
 }
 
-- (ASDPResult *) processRequest:(NSURLRequest *)request
+- (ASDPResult *) processRequest:(NSMutableURLRequest *)request
 {
+    if (!request.HTTPBody || request.HTTPBody.length == 0)
+    {
+        NSString *defaultBody = @"{}";
+        NSData *defaultBodyData = [defaultBody dataUsingEncoding:NSUTF8StringEncoding];
+        [request setHTTPBody:defaultBodyData];
+    }
+
+    NSString *contentLength = [NSString stringWithFormat:@"%d", request.HTTPBody.length];
+    [request setValue:contentLength forHTTPHeaderField:@"Content-Length"];
+
     ASDPResult *result;
 
     NSHTTPURLResponse *response;
