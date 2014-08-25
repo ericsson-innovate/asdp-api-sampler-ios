@@ -14,7 +14,8 @@
 @property (nonatomic, readonly) int statusCode;
 @property (nonatomic, strong, readonly) NSString *message;
 @property (nonatomic, strong, readonly) NSString *body;
-@property (nonatomic, strong, readonly) id bodyData;
+@property (nonatomic, strong, readonly) NSData *bodyData;
+@property (nonatomic, strong, readonly) id data;
 @property (nonatomic, readonly) BOOL isSuccess;
 
 - (instancetype) initWithStatusCode:(int)statusCode;

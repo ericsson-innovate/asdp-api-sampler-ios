@@ -63,10 +63,10 @@
 
 - (NSString *) body
 {
-    if (_data)
-        return _data;
+    if (_body)
+        return _body;
 
-    if (!_body || _body.length == 0)
+    if (!_bodyData || _bodyData.length == 0)
         return nil;
 
     _body = [[NSString alloc] initWithData:_bodyData encoding:NSUTF8StringEncoding];
@@ -79,13 +79,13 @@
     if (_data)
         return _data;
 
-    if (!_bodyData || [_bodyData length])
+    if (!_bodyData || _bodyData.length == 0)
         return nil;
 
     NSError *error;
     _data = [NSJSONSerialization JSONObjectWithData:_bodyData options:0 error:&error];
 
-    if (error)
+    if (error || !_data)
         _message = @"API request failed: invalid JSON data";
 
     return _data;
