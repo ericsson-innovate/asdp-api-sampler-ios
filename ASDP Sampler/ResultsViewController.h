@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class ASDPResult;
+
 @interface ResultsViewController : UIViewController
+
+@property (nonatomic, strong) ASDPResult *result;
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *transactionSwitch;
 @property (weak, nonatomic) IBOutlet UILabel *requestStatusLabel;

@@ -8,14 +8,16 @@
 
 #import "DetailViewController.h"
 #import "ResultsViewController.h"
+#import "ASDPRequestManager.h"
+#import "APIManager.h"
 
 
-@interface DetailViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface DetailViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 
-@property (strong, nonatomic) UINavigationItem *sendItem;
+@property (strong, nonatomic) UIBarButtonItem *sendItem;
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicator;
+@property (strong, nonatomic) ResultsViewController *resultsViewController;
 
-@property (weak, nonatomic) IBOutlet UIView *resultsViewController;
 @property (weak, nonatomic) IBOutlet UINavigationItem *titleItem;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UITableView *parametersTableView;
@@ -27,15 +29,17 @@
 @implementation DetailViewController
 {
     UILabel *_initialView;
+    NSMutableDictionary *_storedValues;
+    ASDPResult *_lastResult;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    self.sendItem = [[UINavigationItem alloc] initWithTitle:@"Send"];
+    self.sendItem = [[UIBarButtonItem alloc] initWithTitle:@"Send" style:UIBarButtonItemStylePlain target:self action:@selector(sendData:)];
     self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-    
+
     self.state = DetailStateInitial;
 }
 
@@ -85,6 +89,17 @@
             [self.parametersTableView setDataSource:self];
             [self.parametersTableView setDelegate:self];
             [self.parametersTableView reloadData];
+
+            self.navigationItem.rightBarButtonItem = _sendItem;
+            self.navigationItem.rightBarButtonItem.enabled = YES;
+            break;
+
+        case DetailStateLoading:
+            self.navigationItem.rightBarButtonItem.enabled = NO;
+            break;
+
+        case DetailStateComplete:
+            self.navigationItem.rightBarButtonItem.enabled = YES;
             break;
             
         default:break;
@@ -97,6 +112,13 @@
 {
     if (_detailItem != newDetailItem) {
         _detailItem = newDetailItem;
+
+        _storedValues = [NSMutableDictionary new];
+
+        [_detailItem.requestParams enumerateObjectsUsingBlock:^(RequestParam *requestParam, NSUInteger idx, BOOL *stop) {
+            if (requestParam.defaultValue)
+                _storedValues[requestParam.key] = requestParam.defaultValue;
+        }];
 
         self.state = DetailStateStart;
     }
@@ -142,11 +164,10 @@
     paramTitleLabel.text = param.key;
     paramDescLabel.text = param.desc;
 
-    if (param.defaultValue)
-    {
-        UILabel *valueLabel = (UILabel *) [cell.contentView viewWithTag:103];
-        valueLabel.text = param.defaultValue;
-    }
+    UITextField *valueTextField = (UITextField *) [cell.contentView viewWithTag:103];
+    [valueTextField setPlaceholder:param.key];
+    [valueTextField setDelegate:self];
+    valueTextField.text = _storedValues[param.key];
 
     if (param.required)
     {
@@ -158,5 +179,57 @@
 }
 
 // TODO: respond to keyboard events for iPhone, mostly
+
+#pragma mark - UITextFieldDelegate methods
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if (textField.text && textField.text.length > 0)
+        _storedValues[textField.placeholder] = textField.text;
+    else
+        [_storedValues removeObjectForKey:textField.placeholder];
+}
+
+#pragma mark - Actions
+
+- (ResultsViewController *) resultsViewController
+{
+    if (!_resultsViewController)
+    {
+        [self.childViewControllers enumerateObjectsUsingBlock:^(UIViewController *viewController, NSUInteger idx, BOOL *stop) {
+            if ([viewController isKindOfClass:ResultsViewController.class])
+            {
+                _resultsViewController = (ResultsViewController *) viewController;
+                *stop = YES;
+            }
+        }];
+    }
+
+    return _resultsViewController;
+}
+
+- (void) sendData:(id)sender
+{
+    self.state = DetailStateLoading;
+
+    [[ASDPRequestManager sharedManager] executeAPI:self.detailItem params:_storedValues completion:^(ASDPResult *result) {
+        _lastResult = result;
+
+        self.state = DetailStateComplete;
+
+        if (self.resultsViewController)
+            [self.resultsViewController setResult:_lastResult];
+        else
+            [self performSegueWithIdentifier:@"showResults" sender:self];
+    }];
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"showResults"] && [segue.destinationViewController isKindOfClass:ResultsViewController.class])
+    {
+        [((ResultsViewController *)segue.destinationViewController) setResult:_lastResult];
+    }
+}
 
 @end

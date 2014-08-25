@@ -7,6 +7,7 @@
 //
 
 #import "ResultsViewController.h"
+#import "ASDPResult.h"
 
 @interface ResultsViewController ()
 
@@ -26,13 +27,28 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    [self setResult:nil];
 }
 
-- (void)didReceiveMemoryWarning
+- (void) setResult:(ASDPResult *)result
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    if (result)
+    {
+        self.requestStatusLabel.text = [NSString stringWithFormat:@"%d", result.statusCode];
+        self.headersSwitch.enabled = YES;
+        self.transactionSwitch.enabled = YES;
+    } else
+    {
+        self.requestStatusLabel.text = @"Unknown";
+        self.outputTextView.text = @"";
+        self.headersSwitch.enabled = NO;
+        self.transactionSwitch.enabled = NO;
+    }
+
+    _result = result;
+
+    [self updateOutputTextView];
 }
 
 /*
@@ -49,9 +65,49 @@
 #pragma mark - Actions
 
 - (IBAction)toggleHeaders:(id)sender {
+    if (!self.result)
+        return;
+
+    [self updateOutputTextView];
 }
 
 - (IBAction)toggleOutput:(id)sender {
+    if (!self.result)
+        return;
+    
+    [self updateOutputTextView];
+}
+
+- (void) updateOutputTextView
+{
+    [self.outputTextView setText:@""];
+
+    if (!_result)
+        return;
+
+    if (self.headersSwitch.isOn)
+    {
+        NSString *headers;
+        
+        if (self.transactionSwitch.selectedSegmentIndex == 0)
+            headers = [_result.request.allHTTPHeaderFields description];
+        else
+            headers = [_result.response.allHeaderFields description];
+        
+        if (headers)
+        {
+            self.outputTextView.text = [self.outputTextView.text stringByAppendingString:headers];
+            self.outputTextView.text = [self.outputTextView.text stringByAppendingString:@"\n\n"];
+        }
+    }
+
+    if (_result.body)
+    {
+        if (self.transactionSwitch.selectedSegmentIndex == 0)
+            self.outputTextView.text = [self.outputTextView.text stringByAppendingString:[_result.request description]];
+        else
+            self.outputTextView.text = [self.outputTextView.text stringByAppendingString:_result.body];
+    }
 }
 
 @end

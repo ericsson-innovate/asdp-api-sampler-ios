@@ -8,6 +8,9 @@
 
 @interface ASDPResult : NSObject
 
+@property (nonatomic, strong) NSURLRequest *request;
+@property (nonatomic, strong) NSHTTPURLResponse *response;
+
 @property (nonatomic, readonly) int statusCode;
 @property (nonatomic, strong, readonly) NSString *message;
 @property (nonatomic, strong, readonly) NSString *body;

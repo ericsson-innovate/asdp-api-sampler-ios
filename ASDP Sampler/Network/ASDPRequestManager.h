@@ -8,12 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import "ASDPResult.h"
+#import "APISpec.h"
 
 @interface ASDPRequestManager : NSObject
 
 typedef void (^ ASDPRequestCompletionBlock)(ASDPResult *result);
 
 + (ASDPRequestManager *) sharedManager;
+
+- (void) executeAPI:(APISpec *)spec params:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion;
 
 - (void) login:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion;
 - (void) logout;

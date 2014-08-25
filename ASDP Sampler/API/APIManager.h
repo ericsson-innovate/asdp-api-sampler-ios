@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "APISpec.h"
+#import "ASDPRequestManager.h"
 
 #define kRemoteAPISpecURL [NSURL URLWithString:@"https://ericsson-innovate.github.io/hackathon-portal/dist/data/specifications.json"]
 
@@ -24,10 +25,11 @@ enum {
 typedef NSUInteger APIManagerState;
 
 + (APIManager *) sharedManager;
++ (SEL) selectorForAPISpec:(APISpec *)spec;
++ (NSString *) convertAPINameToSelectorName:(APISpec *)spec;
 
 - (void) loadSpecs;
 - (BOOL) isSupported:(APISpec *)spec;
-- (NSHTTPURLResponse *) executeAPI:(APISpecRaw *)spec params:(NSDictionary *)params request:(NSURLRequest **)request error:(NSError **)error;
 
 @property (nonatomic, strong) NSArray *categories;
 @property (nonatomic) APIManagerState state;

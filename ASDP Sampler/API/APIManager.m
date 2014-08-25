@@ -115,14 +115,18 @@
 
 - (BOOL) isSupported:(APISpec *)spec
 {
-    NSString *formattedAPIName = [self convertAPINameToSelectorName:spec];
-    NSString *apiSelectorName = [NSString stringWithFormat:@"%@:completion:", formattedAPIName];
-    SEL apiSelector = NSSelectorFromString(apiSelectorName);
-
-    return [[ASDPRequestManager sharedManager] respondsToSelector:apiSelector];
+    SEL apiSelector = [APIManager selectorForAPISpec:spec];
+    return apiSelector && [[ASDPRequestManager sharedManager] respondsToSelector:apiSelector];
 }
 
-- (NSString *) convertAPINameToSelectorName:(APISpec *)spec
++ (SEL) selectorForAPISpec:(APISpec *)spec
+{
+    NSString *formattedAPIName = [self convertAPINameToSelectorName:spec];
+    NSString *apiSelectorName = [NSString stringWithFormat:@"%@:completion:", formattedAPIName];
+    return NSSelectorFromString(apiSelectorName);
+}
+
++ (NSString *) convertAPINameToSelectorName:(APISpec *)spec
 {
     NSString *specName = spec.name;
 
@@ -156,11 +160,6 @@
     }
 
     return selectorName;
-}
-
-- (NSHTTPURLResponse *) executeAPI:(APISpecRaw *)spec params:(NSDictionary *)params request:(NSURLRequest **)request error:(NSError **)error
-{
-    return nil;
 }
 
 @end

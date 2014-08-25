@@ -7,6 +7,7 @@
 //
 
 #import "ASDPRequestManager.h"
+#import "APIManager.h"
 
 @implementation ASDPRequestManager
 
@@ -23,55 +24,33 @@
     return _sharedManager;
 }
 
-+ (NSString *) baseURL
-{
-    return [[NSUserDefaults standardUserDefaults] objectForKey:@"baseURL"];
-}
-
 // ## START 2.6.4-login
 - (void) login:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        ASDPResult *result;
-
         NSString *username = params[@"username"];
         NSString *pin = params[@"pin"];
         NSString *vin = params[@"vin"];
-
-        if (username && pin && vin)
-        {
-            NSString *authString = [NSString stringWithFormat:@"%@:%@", username, pin];
-            NSData *authData = [authString dataUsingEncoding:NSASCIIStringEncoding];
-            NSString *authorization = [NSString stringWithFormat:@"Basic %@", [authData base64EncodedStringWithOptions:0]];
-
-            NSString *requestPath = [NSString stringWithFormat:@"remoteservices/v1/vehicle/login/%@", vin];
-            NSURL *requestURL = [self buildURL:requestPath];
-            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
-            [request setHTTPMethod:@"POST"];
-            [request setAllHTTPHeaderFields:@{
-                    @"Authorization" : authorization,
-                    @"APIKey" : pin,
-                    @"Content-Type" : @"application/json"
-            }];
-
-            NSHTTPURLResponse *response;
-            NSError *error;
-            NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-
-            if (error || !response || !responseData)
-            {
-                if (response)
-                    result = [[ASDPResult alloc] initWithStatusCode:(int) response.statusCode];
-                else
-                    result = [[ASDPResult alloc] initWithStatusCode:500];
-            } else
-            {
-                result = [[ASDPResult alloc] initWithStatusCode:(int) response.statusCode body:responseData];
-            }
-        } else
-        {
-            result = [[ASDPResult alloc] initWithStatusCode:400];
-        }
+        
+        if (!username) username = @"";
+        if (!pin) pin = @"";
+        if (!vin) vin = @"(null)";
+        
+        NSString *authString = [NSString stringWithFormat:@"%@:%@", username, pin];
+        NSData *authData = [authString dataUsingEncoding:NSASCIIStringEncoding];
+        NSString *authorization = [NSString stringWithFormat:@"Basic %@", [authData base64EncodedStringWithOptions:0]];
+        
+        NSString *requestPath = [NSString stringWithFormat:@"remoteservices/v1/vehicle/login/%@", vin];
+        NSURL *requestURL = [self buildURL:requestPath];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
+        [request setHTTPMethod:@"POST"];
+        [request setAllHTTPHeaderFields:@{
+                                          @"Authorization" : authorization,
+                                          @"APIKey" : pin,
+                                          @"Content-Type" : @"application/json"
+                                          }];
+        
+        ASDPResult *result = [self processRequest:request];
 
         if (completion)
         {
@@ -88,12 +67,50 @@
     // TODO: implement this
 }
 
+// ## START COMMON
 - (NSURL *) buildURL:(NSString *)targetPath
 {
-    NSString *targetURL = [NSString stringWithString:[ASDPRequestManager baseURL]];
+    NSString *baseURL = [[NSUserDefaults standardUserDefaults] objectForKey:@"baseURL"];
+
+    if (!baseURL)
+        baseURL = @"http://lightning.att.io:3000/";
+
+    NSString *targetURL = [NSString stringWithString:baseURL];
     targetURL = [targetURL stringByAppendingPathComponent:targetPath];
 
     return [NSURL URLWithString:targetURL];
+}
+
+- (ASDPResult *) processRequest:(NSURLRequest *)request
+{
+    ASDPResult *result;
+
+    NSHTTPURLResponse *response;
+    NSError *error;
+    NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+
+    if (error || !response || !responseData)
+    {
+        if (response)
+            result = [[ASDPResult alloc] initWithStatusCode:(int) response.statusCode];
+        else
+            result = [[ASDPResult alloc] initWithStatusCode:500];
+    } else
+    {
+        result = [[ASDPResult alloc] initWithStatusCode:(int) response.statusCode body:responseData];
+    }
+
+    result.request = request;
+    result.response = response;
+
+    return result;
+}
+// ## END COMMON
+
+- (void) executeAPI:(APISpec *)spec params:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
+{
+    SEL apiSelector = [APIManager selectorForAPISpec:spec];
+    [[ASDPRequestManager sharedManager] performSelector:apiSelector withObject:params withObject:completion];
 }
 
 @end
