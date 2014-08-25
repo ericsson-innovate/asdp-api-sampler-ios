@@ -136,9 +136,8 @@
     for (int i = 0; i < specName.length; ++i)
     {
         int current = [specName characterAtIndex:i];
-        char space = ' ';
 
-        if (current == space)
+        if (current == ' ' || current == '-' || current == '_')
         {
             shouldCapitalize = YES;
             continue;
