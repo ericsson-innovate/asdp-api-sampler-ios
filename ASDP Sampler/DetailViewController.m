@@ -121,6 +121,9 @@
         }];
 
         self.state = DetailStateStart;
+
+        if (self.resultsViewController)
+            [self.resultsViewController setResult:nil];
     }
 
     if (self.masterPopoverController != nil) {
