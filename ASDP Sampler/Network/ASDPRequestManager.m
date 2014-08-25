@@ -38,7 +38,7 @@
                 @"Content-Type" : @"application/json"
         }];
 
-        ASDPResult *result = [self processRequest:request];
+        ASDPResult *result = [self processRequest:request params:nil];
 
         if (completion)
         {
@@ -76,7 +76,7 @@
                                           @"Content-Type" : @"application/json"
                                           }];
         
-        ASDPResult *result = [self processRequest:request];
+        ASDPResult *result = [self processRequest:request params:nil];
 
         if (result.isSuccess)
         {
@@ -114,9 +114,13 @@
     return [NSURL URLWithString:targetURL];
 }
 
-- (ASDPResult *) processRequest:(NSMutableURLRequest *)request
+- (ASDPResult *) processRequest:(NSMutableURLRequest *)request params:(NSDictionary *)params
 {
-    if (!request.HTTPBody || request.HTTPBody.length == 0)
+    if (params && params.count > 0)
+    {
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:params options:0 error:nil];
+        [request setHTTPBody:jsonData];
+    } else
     {
         NSString *defaultBody = @"{}";
         NSData *defaultBodyData = [defaultBody dataUsingEncoding:NSUTF8StringEncoding];
