@@ -87,6 +87,18 @@
 
     if (self.headersSwitch.isOn)
     {
+        if (self.transactionSwitch.selectedSegmentIndex == 0 && _result.request)
+        {
+            self.outputTextView.text = [self.outputTextView.text stringByAppendingString:_result.request.HTTPMethod];
+            self.outputTextView.text = [self.outputTextView.text stringByAppendingString:@" "];
+            self.outputTextView.text = [self.outputTextView.text stringByAppendingString:_result.request.URL.absoluteString];
+            self.outputTextView.text = [self.outputTextView.text stringByAppendingString:@"\n"];
+        } else
+        {
+            self.outputTextView.text = [self.outputTextView.text stringByAppendingString:[NSString stringWithFormat:@"%d", _result.statusCode]];
+            self.outputTextView.text = [self.outputTextView.text stringByAppendingString:@"\n"];
+        }
+
         NSDictionary *headers;
         
         if (self.transactionSwitch.selectedSegmentIndex == 0)
