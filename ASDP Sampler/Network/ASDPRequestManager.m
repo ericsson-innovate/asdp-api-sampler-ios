@@ -50,6 +50,41 @@
 }
 // ## END 2.6.1-signup
 
+// ## START 2.6.2-validateOTP
+- (void) validateOneTimePassword:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *requestPath = [NSString stringWithFormat:@"remoteservices/v1/vehicle/validateotp/%@", self.vin];
+        NSURL *requestURL = [self buildURL:requestPath];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
+        [request setHTTPMethod:@"POST"];
+        [request setAllHTTPHeaderFields:@{
+                @"Authorization" : self.authToken,
+                @"APIKey" : self.apiKey,
+                @"Content-Type" : @"application/json"
+        }];
+
+        NSString *oneTimePassword = params[@"otp"];
+
+        if (!oneTimePassword)
+            oneTimePassword = @"";
+
+        NSDictionary *requestParams = @{
+            @"otp" : oneTimePassword
+        };
+
+        ASDPResult *result = [self processRequest:request params:requestParams];
+
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(result);
+            });
+        }
+    });
+}
+// ## END 2.6.2-validateOTP
+
 // ## START 2.6.4-login
 - (void) login:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
 {
