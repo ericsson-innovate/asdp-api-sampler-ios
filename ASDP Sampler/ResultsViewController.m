@@ -28,7 +28,7 @@
 {
     [super viewDidLoad];
 
-    [self setResult:nil];
+    [self setResult:_result];
 }
 
 - (void) setResult:(ASDPResult *)result
@@ -107,11 +107,16 @@
         }
     }
 
-    if (_result.body)
+    if (self.transactionSwitch.selectedSegmentIndex == 0)
     {
-        if (self.transactionSwitch.selectedSegmentIndex == 0)
-            self.outputTextView.text = [self.outputTextView.text stringByAppendingString:[_result.request description]];
-        else
+        if (_result && _result.request && _result.request.HTTPBody && _result.request.HTTPBody.length > 0)
+        {
+            NSString *requestBody = [[NSString alloc] initWithData:_result.request.HTTPBody encoding:NSUTF8StringEncoding];
+            self.outputTextView.text = [self.outputTextView.text stringByAppendingString:requestBody];
+        }
+    } else
+    {
+        if (_result && _result.body)
             self.outputTextView.text = [self.outputTextView.text stringByAppendingString:_result.body];
     }
 }
