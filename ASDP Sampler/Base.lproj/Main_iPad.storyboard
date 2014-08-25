@@ -322,7 +322,7 @@
                                     <action selector="toggleOutput:" destination="3ff-QJ-AFM" eventType="valueChanged" id="La5-1M-Ahf"/>
                                 </connections>
                             </segmentedControl>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="yzj-kx-WDZ">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yzj-kx-WDZ">
                                 <rect key="frame" x="634" y="15" width="51" height="31"/>
                                 <connections>
                                     <action selector="toggleHeaders:" destination="3ff-QJ-AFM" eventType="valueChanged" id="JOJ-ZQ-Zrq"/>
