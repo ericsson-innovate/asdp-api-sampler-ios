@@ -295,15 +295,18 @@
 
 - (ASDPResult *) processRequest:(NSMutableURLRequest *)request params:(NSDictionary *)params
 {
-    if (params && params.count > 0)
+    if (![@"GET" isEqualToString:request.HTTPMethod])
     {
-        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:params options:0 error:nil];
-        [request setHTTPBody:jsonData];
-    } else
-    {
-        NSString *defaultBody = @"{}";
-        NSData *defaultBodyData = [defaultBody dataUsingEncoding:NSUTF8StringEncoding];
-        [request setHTTPBody:defaultBodyData];
+        if (params && params.count > 0)
+        {
+            NSData *jsonData = [NSJSONSerialization dataWithJSONObject:params options:0 error:nil];
+            [request setHTTPBody:jsonData];
+        } else
+        {
+            NSString *defaultBody = @"{}";
+            NSData *defaultBodyData = [defaultBody dataUsingEncoding:NSUTF8StringEncoding];
+            [request setHTTPBody:defaultBodyData];
+        }
     }
 
     NSString *contentLength = [NSString stringWithFormat:@"%d", request.HTTPBody.length];
