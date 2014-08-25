@@ -27,6 +27,7 @@ typedef void (^ ASDPRequestCompletionBlock)(ASDPResult *result);
 - (void) validateOneTimePassword:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion;
 - (void) setPIN:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion;
 - (void) login:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion;
+- (void) doorUnlock:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion;
 // END 2.6.x APIs
 
 - (void) logout;

@@ -166,6 +166,114 @@
 }
 // ## END 2.6.4-login
 
+// ## START 2.6.5-door-unlock
+- (void) doorUnlock:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *requestPath = [NSString stringWithFormat:@"remoteservices/v1/vehicle/unlock/%@", self.vin];
+        NSURL *requestURL = [self buildURL:requestPath];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
+        [request setHTTPMethod:@"POST"];
+        [request setAllHTTPHeaderFields:@{
+                @"Authorization" : self.authToken,
+                @"APIKey" : self.apiKey,
+                @"Content-Type" : @"application/json"
+        }];
+
+        ASDPResult *result = [self processRequest:request params:params];
+
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(result);
+            });
+        }
+    });
+}
+// ## END 2.6.5-door-unlock
+
+// ## START 2.6.6-door-lock
+- (void) doorLock:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *requestPath = [NSString stringWithFormat:@"remoteservices/v1/vehicle/lock/%@", self.vin];
+        NSURL *requestURL = [self buildURL:requestPath];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
+        [request setHTTPMethod:@"POST"];
+        [request setAllHTTPHeaderFields:@{
+                @"Authorization" : self.authToken,
+                @"APIKey" : self.apiKey,
+                @"Content-Type" : @"application/json"
+        }];
+
+        ASDPResult *result = [self processRequest:request params:params];
+
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(result);
+            });
+        }
+    });
+}
+// ## END 2.6.6-door-lock
+
+// ## START 2.16.1-add-a-vehicle
+- (void) addAVehicle:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *requestPath = [NSString stringWithFormat:@"vehicles/v1/vehicle/add"];
+        NSURL *requestURL = [self buildURL:requestPath];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
+        [request setHTTPMethod:@"POST"];
+        [request setAllHTTPHeaderFields:@{
+                @"Authorization" : self.authToken,
+                @"APIKey" : self.apiKey,
+                @"Content-Type" : @"application/json"
+        }];
+
+        ASDPResult *result = [self processRequest:request params:params];
+
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(result);
+            });
+        }
+    });
+}
+// ## END 2.16.1-add-a-vehicle
+
+// ## START 2.16.4-view-a-vehicle
+- (void) viewAVehicle:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
+{
+    NSString *vin = params[@"vin"];
+
+    if (!vin) vin = @"1234";
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *requestPath = [NSString stringWithFormat:@"vehicles/v1/vehicle/view/%@", vin];
+        NSURL *requestURL = [self buildURL:requestPath];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
+        [request setHTTPMethod:@"GET"];
+        [request setAllHTTPHeaderFields:@{
+                @"Authorization" : self.authToken,
+                @"APIKey" : self.apiKey,
+                @"Content-Type" : @"application/json"
+        }];
+
+        ASDPResult *result = [self processRequest:request params:params];
+
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(result);
+            });
+        }
+    });
+}
+// ## END 2.16.1-add-a-vehicle
+
 - (void) logout
 {
     // TODO: implement this
