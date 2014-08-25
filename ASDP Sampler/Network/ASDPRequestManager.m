@@ -24,7 +24,7 @@
     return _sharedManager;
 }
 
-// ## START 2.6.1-signup
+// ## START 2.6.1-sign-up
 - (void) signUp:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
@@ -48,9 +48,9 @@
         }
     });
 }
-// ## END 2.6.1-signup
+// ## END 2.6.1-sign-up
 
-// ## START 2.6.2-validateOTP
+// ## START 2.6.2-validate-otp
 - (void) validateOneTimePassword:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
@@ -83,7 +83,7 @@
         }
     });
 }
-// ## END 2.6.2-validateOTP
+// ## END 2.6.2-validate-otp
 
 // ## START 2.6.4-login
 - (void) login:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
