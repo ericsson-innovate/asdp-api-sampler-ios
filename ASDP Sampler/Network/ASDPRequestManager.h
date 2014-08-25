@@ -16,6 +16,10 @@ typedef void (^ ASDPRequestCompletionBlock)(ASDPResult *result);
 
 + (ASDPRequestManager *) sharedManager;
 
+@property (nonatomic, strong, readonly) NSString *vin;
+@property (nonatomic, strong, readonly) NSString *authToken;
+@property (nonatomic, strong, readonly) NSString *apiKey;
+
 - (void) executeAPI:(APISpec *)spec params:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion;
 
 - (void) login:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion;

@@ -52,6 +52,13 @@
         
         ASDPResult *result = [self processRequest:request];
 
+        if (result.isSuccess)
+        {
+            _vin = vin;
+            _authToken = authorization;
+            _apiKey = pin;
+        }
+
         if (completion)
         {
             dispatch_async(dispatch_get_main_queue(), ^{
