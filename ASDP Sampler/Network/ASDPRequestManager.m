@@ -85,6 +85,42 @@
 }
 // ## END 2.6.2-validate-otp
 
+// ## START 2.6.3-set-pin
+- (void) setPIN:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *requestPath = [NSString stringWithFormat:@"remoteservices/v1/vehicle/setpin/%@", self.vin];
+        NSURL *requestURL = [self buildURL:requestPath];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
+        [request setHTTPMethod:@"POST"];
+        [request setAllHTTPHeaderFields:@{
+                @"Authorization" : self.authToken,
+                @"APIKey" : self.apiKey,
+                @"Content-Type" : @"application/json"
+        }];
+
+        NSString *oneTimePassword = params[@"otp"];
+        int pin = [params[@"pin"] integerValue];
+
+        if (!oneTimePassword) oneTimePassword = @"";
+
+        NSDictionary *requestParams = @{
+                @"otp" : oneTimePassword,
+                @"pin" : @(pin)
+        };
+
+        ASDPResult *result = [self processRequest:request params:requestParams];
+
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(result);
+            });
+        }
+    });
+}
+// ## END 2.6.3-set-pin
+
 // ## START 2.6.4-login
 - (void) login:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
 {
