@@ -91,7 +91,7 @@
             [self.parametersTableView reloadData];
 
             self.navigationItem.rightBarButtonItem = _sendItem;
-            self.navigationItem.rightBarButtonItem.enabled = YES;
+            self.navigationItem.rightBarButtonItem.enabled = [[APIManager sharedManager] isSupported:_detailItem];
             break;
 
         case DetailStateLoading:
