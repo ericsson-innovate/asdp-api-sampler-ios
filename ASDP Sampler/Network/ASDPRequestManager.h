@@ -31,6 +31,13 @@ typedef void (^ ASDPRequestCompletionBlock)(ASDPResult *result);
 - (void) doorLock:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion;
 // END 2.6.x APIs
 
+// START 2.16.x APIs
+- (void) addAVehicle:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion;
+
+
+- (void) viewAVehicle:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion;
+// END 2.16.x APIs
+
 - (void) logout;
 
 @end
