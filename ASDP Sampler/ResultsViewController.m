@@ -87,17 +87,23 @@
 
     if (self.headersSwitch.isOn)
     {
-        NSString *headers;
+        NSDictionary *headers;
         
         if (self.transactionSwitch.selectedSegmentIndex == 0)
-            headers = [_result.request.allHTTPHeaderFields description];
+            headers = _result.request.allHTTPHeaderFields;
         else
-            headers = [_result.response.allHeaderFields description];
+            headers = _result.response.allHeaderFields;
         
-        if (headers)
+        if (headers && headers.count > 0)
         {
-            self.outputTextView.text = [self.outputTextView.text stringByAppendingString:headers];
-            self.outputTextView.text = [self.outputTextView.text stringByAppendingString:@"\n\n"];
+            [headers enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *value, BOOL *stop) {
+                self.outputTextView.text = [self.outputTextView.text stringByAppendingString:key];
+                self.outputTextView.text = [self.outputTextView.text stringByAppendingString:@": "];
+                self.outputTextView.text = [self.outputTextView.text stringByAppendingString:value];
+                self.outputTextView.text = [self.outputTextView.text stringByAppendingString:@"\n"];
+            }];
+            
+            self.outputTextView.text = [self.outputTextView.text stringByAppendingString:@"\n"];
         }
     }
 
