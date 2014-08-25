@@ -24,6 +24,32 @@
     return _sharedManager;
 }
 
+// ## START 2.6.1-signup
+- (void) signUp:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *requestPath = [NSString stringWithFormat:@"remoteservices/v1/vehicle/signup/%@", self.vin];
+        NSURL *requestURL = [self buildURL:requestPath];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
+        [request setHTTPMethod:@"POST"];
+        [request setAllHTTPHeaderFields:@{
+                @"Authorization" : self.authToken,
+                @"APIKey" : self.apiKey,
+                @"Content-Type" : @"application/json"
+        }];
+
+        ASDPResult *result = [self processRequest:request];
+
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(result);
+            });
+        }
+    });
+}
+// ## END 2.6.1-signup
+
 // ## START 2.6.4-login
 - (void) login:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
 {

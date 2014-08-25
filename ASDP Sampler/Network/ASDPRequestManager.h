@@ -23,6 +23,7 @@ typedef void (^ ASDPRequestCompletionBlock)(ASDPResult *result);
 - (void) executeAPI:(APISpec *)spec params:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion;
 
 - (void) login:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion;
+- (void) signUp:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion;
 - (void) logout;
 
 @end
