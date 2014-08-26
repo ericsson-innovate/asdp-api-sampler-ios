@@ -226,7 +226,7 @@
         if (firstChar == '[' || firstChar == '{')
         {
             NSData *textData = [value dataUsingEncoding:NSUTF8StringEncoding];
-            textObject = [NSJSONSerialization JSONObjectWithData:textData options:nil error:&jsonError];
+            textObject = [NSJSONSerialization JSONObjectWithData:textData options:0 error:&jsonError];
         }
 
         if (textObject && !jsonError)
