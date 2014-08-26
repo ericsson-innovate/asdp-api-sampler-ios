@@ -364,16 +364,16 @@
 }
 // ## END 2.16.1-add-a-vehicle
 
-// ## START 2.16.4-view-a-vehicle
-- (void) viewAVehicle:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
+// ## START 2.16.2-update-a-vehicle
+- (void) updateAVehicle:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
 {
     NSString *vin = params[@"route"][@"vin"];
 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        NSString *requestPath = [NSString stringWithFormat:@"vehicles/v1/vehicle/view/%@", vin];
+        NSString *requestPath = [NSString stringWithFormat:@"vehicles/v1/vehicle/update/%@", vin];
         NSURL *requestURL = [self buildURL:requestPath];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
-        [request setHTTPMethod:@"GET"];
+        [request setHTTPMethod:@"POST"];
 
         ASDPResult *result = [self processRequest:request params:params[@"request"]];
 
@@ -385,7 +385,116 @@
         }
     });
 }
-// ## END 2.16.1-add-a-vehicle
+// ## END 2.16.2-update-a-vehicle
+
+// ## START 2.16.3-delete-a-vehicle
+- (void) deleteAVehicle:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
+{
+    NSString *vin = params[@"route"][@"vin"];
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *requestPath = [NSString stringWithFormat:@"vehicles/v1/vehicle/delete/%@", vin];
+        NSURL *requestURL = [self buildURL:requestPath];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
+        [request setHTTPMethod:@"DELETE"];
+
+        ASDPResult *result = [self processRequest:request params:nil];
+
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(result);
+            });
+        }
+    });
+}
+// ## END 2.16.3-delete-a-vehicle
+
+// ## START 2.16.4-view-a-vehicle
+- (void) viewAVehicle:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
+{
+    NSString *vin = params[@"route"][@"vin"];
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *requestPath = [NSString stringWithFormat:@"vehicles/v1/vehicle/view/%@", vin];
+        NSURL *requestURL = [self buildURL:requestPath];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
+        [request setHTTPMethod:@"GET"];
+
+        ASDPResult *result = [self processRequest:request params:nil];
+
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(result);
+            });
+        }
+    });
+}
+// ## END 2.16.4-view-a-vehicle
+
+// ## START 2.16.5-update-vehicle-users
+- (void) updateVehicleUsers:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *requestPath = [NSString stringWithFormat:@"vehicles/v1/users/update"];
+        NSURL *requestURL = [self buildURL:requestPath];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
+        [request setHTTPMethod:@"UPDATE"];
+
+        ASDPResult *result = [self processRequest:request params:params[@"request"]];
+
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(result);
+            });
+        }
+    });
+}
+// ## END 2.16.5-update-vehicle-users
+
+// ## START 2.16.6-delete-vehicle-users
+- (void) deleteVehicleUsers:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *requestPath = [NSString stringWithFormat:@"vehicles/v1/users/delete"];
+        NSURL *requestURL = [self buildURL:requestPath];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
+        [request setHTTPMethod:@"DELETE"];
+
+        ASDPResult *result = [self processRequest:request params:params[@"request"]];
+
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(result);
+            });
+        }
+    });
+}
+// ## END 2.16.6-delete-vehicle-users
+
+// ## START 2.16.7-search-vehicles
+- (void) searchVehicles:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *requestPath = [NSString stringWithFormat:@"vehicles/v1/vehicle/search"];
+        NSURL *requestURL = [self buildURL:requestPath];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
+        [request setHTTPMethod:@"POST"];
+
+        ASDPResult *result = [self processRequest:request params:params[@"request"]];
+
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(result);
+            });
+        }
+    });
+}
+// ## END 2.16.7-search-vehicles
 
 - (void) logout
 {

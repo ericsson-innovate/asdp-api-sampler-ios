@@ -39,9 +39,12 @@ typedef void (^ ASDPRequestCompletionBlock)(ASDPResult *result);
 
 // START 2.16.x APIs
 - (void) addAVehicle:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion;
-
-
+- (void) updateAVehicle:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion;
+- (void) deleteAVehicle:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion;
 - (void) viewAVehicle:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion;
+- (void) updateVehicleUsers:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion;
+- (void) deleteVehicleUsers:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion;
+- (void) searchVehicles:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion;
 // END 2.16.x APIs
 
 - (void) logout;
