@@ -80,6 +80,16 @@
 
 + (id) fromJSONObject:(NSDictionary *)json
 {
+    NSDictionary *rawRouteParams = json[@"route"];
+    NSMutableArray *routeParams = [NSMutableArray new];
+
+    [rawRouteParams enumerateKeysAndObjectsUsingBlock:^(NSString *name, NSString *desc, BOOL *stop) {
+        RouteParam *routeParam = [[RouteParam alloc] init];
+        routeParam.name = name;
+        routeParam.desc = desc;
+        [routeParams addObject:routeParam];
+    }];
+
     NSArray *rawRequestParams = json[@"requestBody"];
     NSMutableArray *requestParams = [NSMutableArray new];
 
@@ -91,6 +101,7 @@
     }];
 
     Parameters *parameters = [[Parameters alloc] init];
+    parameters.route = [NSArray arrayWithArray:routeParams];
     parameters.requestBody = [NSArray arrayWithArray:requestParams];
 
     return parameters;
@@ -114,6 +125,10 @@
 
     return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
+
+@end
+
+@implementation RouteParam
 
 @end
 

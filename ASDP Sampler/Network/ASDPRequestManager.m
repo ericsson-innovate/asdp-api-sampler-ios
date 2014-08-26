@@ -28,17 +28,14 @@
 - (void) signUp:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        NSString *requestPath = [NSString stringWithFormat:@"remoteservices/v1/vehicle/signup/%@", self.vin];
+        NSString *vin = params[@"route"][@"vin"];
+
+        NSString *requestPath = [NSString stringWithFormat:@"remoteservices/v1/vehicle/signup/%@", vin];
         NSURL *requestURL = [self buildURL:requestPath];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
         [request setHTTPMethod:@"POST"];
-        [request setAllHTTPHeaderFields:@{
-                @"Authorization" : self.authToken,
-                @"APIKey" : self.apiKey,
-                @"Content-Type" : @"application/json"
-        }];
 
-        ASDPResult *result = [self processRequest:request params:nil];
+        ASDPResult *result = [self processRequest:request params:params[@"request"]];
 
         if (completion)
         {
@@ -54,17 +51,14 @@
 - (void) validateOneTimePassword:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        NSString *requestPath = [NSString stringWithFormat:@"remoteservices/v1/vehicle/validateotp/%@", self.vin];
+        NSString *vin = params[@"route"][@"vin"];
+
+        NSString *requestPath = [NSString stringWithFormat:@"remoteservices/v1/vehicle/validateotp/%@", vin];
         NSURL *requestURL = [self buildURL:requestPath];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
         [request setHTTPMethod:@"POST"];
-        [request setAllHTTPHeaderFields:@{
-                @"Authorization" : self.authToken,
-                @"APIKey" : self.apiKey,
-                @"Content-Type" : @"application/json"
-        }];
 
-        NSString *oneTimePassword = params[@"otp"];
+        NSString *oneTimePassword = params[@"request"][@"otp"];
 
         if (!oneTimePassword)
             oneTimePassword = @"";
@@ -89,18 +83,15 @@
 - (void) setPIN:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        NSString *requestPath = [NSString stringWithFormat:@"remoteservices/v1/vehicle/setpin/%@", self.vin];
+        NSString *vin = params[@"route"][@"vin"];
+
+        NSString *requestPath = [NSString stringWithFormat:@"remoteservices/v1/vehicle/setpin/%@", vin];
         NSURL *requestURL = [self buildURL:requestPath];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
         [request setHTTPMethod:@"POST"];
-        [request setAllHTTPHeaderFields:@{
-                @"Authorization" : self.authToken,
-                @"APIKey" : self.apiKey,
-                @"Content-Type" : @"application/json"
-        }];
 
-        NSString *oneTimePassword = params[@"otp"];
-        int pin = [params[@"pin"] integerValue];
+        NSString *oneTimePassword = params[@"request"][@"otp"];
+        int pin = [params[@"request"][@"pin"] integerValue];
 
         if (!oneTimePassword) oneTimePassword = @"";
 
@@ -144,7 +135,8 @@
         [request setAllHTTPHeaderFields:@{
                                           @"Authorization" : authorization,
                                           @"APIKey" : pin,
-                                          @"Content-Type" : @"application/json"
+                                          @"Content-Type" : @"application/json",
+                                          @"Accept" : @"application/json"
                                           }];
         
         ASDPResult *result = [self processRequest:request params:nil];
@@ -170,17 +162,14 @@
 - (void) doorUnlock:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        NSString *requestPath = [NSString stringWithFormat:@"remoteservices/v1/vehicle/unlock/%@", self.vin];
+        NSString *vin = params[@"route"][@"vin"];
+
+        NSString *requestPath = [NSString stringWithFormat:@"remoteservices/v1/vehicle/unlock/%@", vin];
         NSURL *requestURL = [self buildURL:requestPath];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
         [request setHTTPMethod:@"POST"];
-        [request setAllHTTPHeaderFields:@{
-                @"Authorization" : self.authToken,
-                @"APIKey" : self.apiKey,
-                @"Content-Type" : @"application/json"
-        }];
 
-        ASDPResult *result = [self processRequest:request params:params];
+        ASDPResult *result = [self processRequest:request params:params[@"request"]];
 
         if (completion)
         {
@@ -196,17 +185,14 @@
 - (void) doorLock:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        NSString *requestPath = [NSString stringWithFormat:@"remoteservices/v1/vehicle/lock/%@", self.vin];
+        NSString *vin = params[@"route"][@"vin"];
+
+        NSString *requestPath = [NSString stringWithFormat:@"remoteservices/v1/vehicle/lock/%@", vin];
         NSURL *requestURL = [self buildURL:requestPath];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
         [request setHTTPMethod:@"POST"];
-        [request setAllHTTPHeaderFields:@{
-                @"Authorization" : self.authToken,
-                @"APIKey" : self.apiKey,
-                @"Content-Type" : @"application/json"
-        }];
 
-        ASDPResult *result = [self processRequest:request params:params];
+        ASDPResult *result = [self processRequest:request params:params[@"request"]];
 
         if (completion)
         {
@@ -222,17 +208,14 @@
 - (void) engineOn:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        NSString *requestPath = [NSString stringWithFormat:@"remoteservices/v1/vehicle/engineOn/%@", self.vin];
+        NSString *vin = params[@"route"][@"vin"];
+
+        NSString *requestPath = [NSString stringWithFormat:@"remoteservices/v1/vehicle/engineOn/%@", vin];
         NSURL *requestURL = [self buildURL:requestPath];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
         [request setHTTPMethod:@"POST"];
-        [request setAllHTTPHeaderFields:@{
-                @"Authorization" : self.authToken,
-                @"APIKey" : self.apiKey,
-                @"Content-Type" : @"application/json"
-        }];
 
-        ASDPResult *result = [self processRequest:request params:params];
+        ASDPResult *result = [self processRequest:request params:params[@"request"]];
 
         if (completion)
         {
@@ -248,17 +231,14 @@
 - (void) engineOff:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        NSString *requestPath = [NSString stringWithFormat:@"remoteservices/v1/vehicle/engineOff/%@", self.vin];
+        NSString *vin = params[@"route"][@"vin"];
+
+        NSString *requestPath = [NSString stringWithFormat:@"remoteservices/v1/vehicle/engineOff/%@", vin];
         NSURL *requestURL = [self buildURL:requestPath];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
         [request setHTTPMethod:@"POST"];
-        [request setAllHTTPHeaderFields:@{
-                @"Authorization" : self.authToken,
-                @"APIKey" : self.apiKey,
-                @"Content-Type" : @"application/json"
-        }];
 
-        ASDPResult *result = [self processRequest:request params:params];
+        ASDPResult *result = [self processRequest:request params:params[@"request"]];
 
         if (completion)
         {
@@ -274,17 +254,14 @@
 - (void) honkAndBlink:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        NSString *requestPath = [NSString stringWithFormat:@"remoteservices/v1/vehicle/honkBlink/%@", self.vin];
+        NSString *vin = params[@"route"][@"vin"];
+
+        NSString *requestPath = [NSString stringWithFormat:@"remoteservices/v1/vehicle/honkBlink/%@", vin];
         NSURL *requestURL = [self buildURL:requestPath];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
         [request setHTTPMethod:@"POST"];
-        [request setAllHTTPHeaderFields:@{
-                @"Authorization" : self.authToken,
-                @"APIKey" : self.apiKey,
-                @"Content-Type" : @"application/json"
-        }];
 
-        ASDPResult *result = [self processRequest:request params:params];
+        ASDPResult *result = [self processRequest:request params:params[@"request"]];
 
         if (completion)
         {
@@ -300,17 +277,13 @@
 - (void) checkRequestStatus:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        int requestId = [params[@"requestId"] intValue];
+        NSString *vin = params[@"route"][@"vin"];
+        int requestId = [params[@"route"][@"requestId"] intValue];
 
-        NSString *requestPath = [NSString stringWithFormat:@"remoteservices/v1/vehicle/status/%@/%d", self.vin, requestId];
+        NSString *requestPath = [NSString stringWithFormat:@"remoteservices/v1/vehicle/status/%@/%d", vin, requestId];
         NSURL *requestURL = [self buildURL:requestPath];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
         [request setHTTPMethod:@"GET"];
-        [request setAllHTTPHeaderFields:@{
-                @"Authorization" : self.authToken,
-                @"APIKey" : self.apiKey,
-                @"Content-Type" : @"application/json"
-        }];
 
         ASDPResult *result = [self processRequest:request params:nil];
 
@@ -328,17 +301,14 @@
 - (void) viewDiagnosticData:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        NSString *requestPath = [NSString stringWithFormat:@"remoteservices/v1/vehicle/diagnostics/view/%@", self.vin];
+        NSString *vin = params[@"route"][@"vin"];
+
+        NSString *requestPath = [NSString stringWithFormat:@"remoteservices/v1/vehicle/diagnostics/view/%@", vin];
         NSURL *requestURL = [self buildURL:requestPath];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
         [request setHTTPMethod:@"POST"];
-        [request setAllHTTPHeaderFields:@{
-                @"Authorization" : self.authToken,
-                @"APIKey" : self.apiKey,
-                @"Content-Type" : @"application/json"
-        }];
 
-        ASDPResult *result = [self processRequest:request params:params];
+        ASDPResult *result = [self processRequest:request params:params[@"request"]];
 
         if (completion)
         {
@@ -354,17 +324,14 @@
 - (void) getVehicleStatus:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        NSString *requestPath = [NSString stringWithFormat:@"remoteservices/v1/vehicle/status/view/%@", self.vin];
+        NSString *vin = params[@"route"][@"vin"];
+
+        NSString *requestPath = [NSString stringWithFormat:@"remoteservices/v1/vehicle/status/view/%@", vin];
         NSURL *requestURL = [self buildURL:requestPath];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
         [request setHTTPMethod:@"POST"];
-        [request setAllHTTPHeaderFields:@{
-                @"Authorization" : self.authToken,
-                @"APIKey" : self.apiKey,
-                @"Content-Type" : @"application/json"
-        }];
 
-        ASDPResult *result = [self processRequest:request params:params];
+        ASDPResult *result = [self processRequest:request params:params[@"request"]];
 
         if (completion)
         {
@@ -384,13 +351,8 @@
         NSURL *requestURL = [self buildURL:requestPath];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
         [request setHTTPMethod:@"POST"];
-        [request setAllHTTPHeaderFields:@{
-                @"Authorization" : self.authToken,
-                @"APIKey" : self.apiKey,
-                @"Content-Type" : @"application/json"
-        }];
 
-        ASDPResult *result = [self processRequest:request params:params];
+        ASDPResult *result = [self processRequest:request params:params[@"request"]];
 
         if (completion)
         {
@@ -405,22 +367,15 @@
 // ## START 2.16.4-view-a-vehicle
 - (void) viewAVehicle:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
 {
-    NSString *vin = params[@"vin"];
-
-    if (!vin) vin = @"1234";
+    NSString *vin = params[@"route"][@"vin"];
 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         NSString *requestPath = [NSString stringWithFormat:@"vehicles/v1/vehicle/view/%@", vin];
         NSURL *requestURL = [self buildURL:requestPath];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
         [request setHTTPMethod:@"GET"];
-        [request setAllHTTPHeaderFields:@{
-                @"Authorization" : self.authToken,
-                @"APIKey" : self.apiKey,
-                @"Content-Type" : @"application/json"
-        }];
 
-        ASDPResult *result = [self processRequest:request params:params];
+        ASDPResult *result = [self processRequest:request params:params[@"request"]];
 
         if (completion)
         {
@@ -467,6 +422,15 @@
         }
     }
 
+    if (request.allHTTPHeaderFields.count == 0)
+    {
+        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+
+        if (self.authToken) [request setValue:self.authToken forHTTPHeaderField:@"Authorization"];
+        if (self.apiKey) [request setValue:self.apiKey forHTTPHeaderField:@"APIKey"];
+    }
+
     NSString *contentLength = [NSString stringWithFormat:@"%d", request.HTTPBody.length];
     [request setValue:contentLength forHTTPHeaderField:@"Content-Length"];
 
@@ -494,9 +458,18 @@
 }
 // ## END COMMON
 
-- (void) executeAPI:(APISpec *)spec params:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
+- (void) executeAPI:(APISpec *)spec routeParams:(NSDictionary *)routeParams requestParams:(NSDictionary *)requestParams completion:(ASDPRequestCompletionBlock)completion
 {
     SEL apiSelector = [APIManager selectorForAPISpec:spec];
+
+    NSDictionary *params;
+
+    if (routeParams && requestParams)
+        params = @{ @"route" : routeParams, @"request" : requestParams };
+    else if (routeParams)
+        params = @{ @"route" : routeParams };
+    else if (requestParams)
+        params = @{ @"request" : requestParams };
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"

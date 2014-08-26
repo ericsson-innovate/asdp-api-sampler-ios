@@ -20,7 +20,7 @@ typedef void (^ ASDPRequestCompletionBlock)(ASDPResult *result);
 @property (nonatomic, strong, readonly) NSString *authToken;
 @property (nonatomic, strong, readonly) NSString *apiKey;
 
-- (void) executeAPI:(APISpec *)spec params:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion;
+- (void) executeAPI:(APISpec *)spec routeParams:(NSDictionary *)routeParams requestParams:(NSDictionary *)requestParams completion:(ASDPRequestCompletionBlock)completion;
 
 // START 2.6.x APIs
 - (void) signUp:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion;

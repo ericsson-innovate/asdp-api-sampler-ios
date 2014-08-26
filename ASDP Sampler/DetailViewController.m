@@ -29,7 +29,8 @@
 @implementation DetailViewController
 {
     UILabel *_initialView;
-    NSMutableDictionary *_storedValues;
+    NSMutableDictionary *_routeParams;
+    NSMutableDictionary *_requestParams;
     ASDPResult *_lastResult;
 }
 
@@ -113,11 +114,22 @@
     if (_detailItem != newDetailItem) {
         _detailItem = newDetailItem;
 
-        _storedValues = [NSMutableDictionary new];
+        _routeParams = [NSMutableDictionary new];
+        _requestParams = [NSMutableDictionary new];
 
         [_detailItem.requestParams enumerateObjectsUsingBlock:^(RequestParam *requestParam, NSUInteger idx, BOOL *stop) {
             if (requestParam.defaultValue)
-                _storedValues[requestParam.key] = requestParam.defaultValue;
+                _requestParams[requestParam.key] = requestParam.defaultValue;
+        }];
+
+        [_detailItem.routeParams enumerateObjectsUsingBlock:^(RouteParam *routeParam, NSUInteger idx, BOOL *stop) {
+            if (routeParam.defaultValue)
+                _routeParams[routeParam.name] = routeParam.defaultValue;
+            else
+            {
+                if ([@"vin" isEqualToString:routeParam.name])
+                    _routeParams[@"vin"] = [[ASDPRequestManager sharedManager] vin];
+            }
         }];
 
         self.state = DetailStateStart;
@@ -144,53 +156,97 @@
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (self.detailItem)
-        return self.detailItem.requestParams.count;
+    if (section == 0)
+    {
+        if (self.detailItem && self.detailItem.routeParams)
+            return self.detailItem.routeParams.count;
+        else
+            return 0;
+    } else
+    {
+        if (self.detailItem && self.detailItem.requestParams)
+            return self.detailItem.requestParams.count;
+        else
+            return 0;
+    }
+}
+
+- (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (section == 0)
+        return @"Route Parameters";
     else
-        return 0;
+        return @"Request Parameters";
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RequestCell" forIndexPath:indexPath];
 
-    RequestParam *param = self.detailItem.requestParams[indexPath.row];
+    NSString *title;
+    NSString *desc;
+    BOOL req;
+
+    if (indexPath.section == 0)
+    {
+        RouteParam *param = self.detailItem.routeParams[indexPath.row];
+        title = param.name;
+        desc = param.desc;
+        req = YES;
+    } else
+    {
+        RequestParam *param = self.detailItem.requestParams[indexPath.row];
+        title = param.key;
+        desc = param.desc;
+        req = param.required;
+    }
 
     UILabel *paramTitleLabel = (UILabel *) [cell.contentView viewWithTag:101];
     UILabel *paramDescLabel = (UILabel *) [cell.contentView viewWithTag:102];
 
-    paramTitleLabel.text = param.key;
-    paramDescLabel.text = param.desc;
+    paramTitleLabel.text = title;
+    paramDescLabel.text = desc;
 
     UITextField *valueTextField = (UITextField *) [cell.contentView viewWithTag:103];
-    [valueTextField setPlaceholder:param.key];
+    [valueTextField setPlaceholder:title];
     [valueTextField setDelegate:self];
-    valueTextField.text = _storedValues[param.key];
+    valueTextField.tag = indexPath.section;
 
-    if (param.required)
+    NSString *defaultValue;
+
+    if (indexPath.section == 0)
     {
-        UILabel *requiredLabel = (UILabel *) [cell.contentView viewWithTag:104];
-        requiredLabel.text = @"(required)";
+        if (_routeParams[title])
+            defaultValue = [NSString stringWithFormat:@"%@", _routeParams[title]];
+    } else
+    {
+        if (_requestParams[title])
+            defaultValue = [NSString stringWithFormat:@"%@", _requestParams[title]];
     }
+
+    valueTextField.text = defaultValue;
+
+    UILabel *requiredLabel = (UILabel *) [cell.contentView viewWithTag:104];
+    requiredLabel.text = req ? @"(required)" : @"(optional)";
 
     return cell;
 }
-
-// TODO: respond to keyboard events for iPhone, mostly
 
 #pragma mark - UITextFieldDelegate methods
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
+    NSMutableDictionary *params = (textField.tag == 0) ? _routeParams : _requestParams;
+
     if (textField.text && textField.text.length > 0)
-        _storedValues[textField.placeholder] = textField.text;
+        params[textField.placeholder] = textField.text;
     else
-        [_storedValues removeObjectForKey:textField.placeholder];
+        [params removeObjectForKey:textField.placeholder];
 }
 
 #pragma mark - Actions
@@ -217,7 +273,7 @@
 
     NSMutableDictionary *requestParameters = [NSMutableDictionary new];
 
-    [_storedValues enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *value, BOOL *stop) {
+    [_requestParams enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *value, BOOL *stop) {
         unichar firstChar = [value characterAtIndex:0];
 
         NSError *jsonError;
@@ -235,7 +291,7 @@
             requestParameters[key] = value;
     }];
 
-    [[ASDPRequestManager sharedManager] executeAPI:self.detailItem params:requestParameters completion:^(ASDPResult *result) {
+    [[ASDPRequestManager sharedManager] executeAPI:self.detailItem routeParams:_routeParams requestParams:requestParameters completion:^(ASDPResult *result) {
         _lastResult = result;
 
         self.state = DetailStateComplete;

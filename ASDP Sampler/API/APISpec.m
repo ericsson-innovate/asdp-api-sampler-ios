@@ -55,6 +55,19 @@
     return nil;
 }
 
+- (NSArray *) routeParams
+{
+    if (_apiSpecRaw &&
+            _apiSpecRaw.parameters &&
+            _apiSpecRaw.parameters.route &&
+            _apiSpecRaw.parameters.route.count > 0)
+    {
+        return _apiSpecRaw.parameters.route;
+    }
+
+    return nil;
+}
+
 - (NSArray *) requestParams
 {
     if (_apiSpecRaw &&

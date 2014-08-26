@@ -32,7 +32,16 @@
 
 @interface Parameters : NSObject <JSONObjectCoding>
 
+@property (nonatomic, strong) NSArray *route;
 @property (nonatomic, strong) NSArray *requestBody;
+
+@end
+
+@interface RouteParam : NSObject
+
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *desc;
+@property (nonatomic, strong) NSString *defaultValue;
 
 @end
 

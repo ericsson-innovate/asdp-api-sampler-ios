@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSArray *categories;
 
 @property (nonatomic, readonly) NSString *route;
+@property (nonatomic, readonly) NSArray *routeParams;
 @property (nonatomic, readonly) NSArray *requestParams;
 @property (nonatomic, readonly) NSString *verb;
 
