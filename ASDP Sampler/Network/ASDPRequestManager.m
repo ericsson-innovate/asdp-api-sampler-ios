@@ -497,7 +497,11 @@
 - (void) executeAPI:(APISpec *)spec params:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
 {
     SEL apiSelector = [APIManager selectorForAPISpec:spec];
-    [[ASDPRequestManager sharedManager] performSelector:apiSelector withObject:params withObject:completion];
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+    [self performSelector:apiSelector withObject:params withObject:completion];
+#pragma clang diagnostic pop
 }
 
 @end
