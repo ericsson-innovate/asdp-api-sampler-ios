@@ -18,8 +18,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *requestStatusLabel;
 @property (weak, nonatomic) IBOutlet UISwitch *headersSwitch;
 @property (weak, nonatomic) IBOutlet UITextView *outputTextView;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *getRequestStatusItem;
 
 - (IBAction)toggleHeaders:(id)sender;
 - (IBAction)toggleOutput:(id)sender;
+- (IBAction)getRequestStatus:(id)sender;
 
 @end

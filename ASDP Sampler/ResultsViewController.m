@@ -8,6 +8,11 @@
 
 #import "ResultsViewController.h"
 #import "ASDPResult.h"
+#import "DetailViewController.h"
+#import "APIManager.h"
+#import "APICategory.h"
+
+@class DetailViewController;
 
 @interface ResultsViewController ()
 
@@ -38,29 +43,20 @@
         self.requestStatusLabel.text = [NSString stringWithFormat:@"%d", result.statusCode];
         self.headersSwitch.enabled = YES;
         self.transactionSwitch.enabled = YES;
+        self.getRequestStatusItem.enabled = _result.data[@"requestId"] != nil;
     } else
     {
         self.requestStatusLabel.text = @"Unknown";
         self.outputTextView.text = @"";
         self.headersSwitch.enabled = NO;
         self.transactionSwitch.enabled = NO;
+        self.getRequestStatusItem.enabled = NO;
     }
 
     _result = result;
 
     [self updateOutputTextView];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark - Actions
 
@@ -76,6 +72,34 @@
         return;
     
     [self updateOutputTextView];
+}
+
+- (IBAction)getRequestStatus:(id)sender
+{
+    APISpec *requestStatusSpec = [[APIManager sharedManager] specs][@"2.6.10"];
+
+    if (!requestStatusSpec)
+        return;
+
+    [requestStatusSpec.routeParams enumerateObjectsUsingBlock:^(RouteParam *param, NSUInteger idx, BOOL *stop) {
+        if ([param.name isEqualToString:@"requestId"])
+        {
+            param.defaultValue = self.result.data[@"requestId"];
+            *stop = YES;
+        }
+    }];
+
+    NSString *storyboardName;
+
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
+        storyboardName = @"Main_iPad";
+    else
+        storyboardName = @"Main_iPhone";
+
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
+    DetailViewController *requestStatusViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"DetailViewController"];
+    [requestStatusViewController setDetailItem:requestStatusSpec];
+    [self.navigationController pushViewController:requestStatusViewController animated:YES];
 }
 
 - (void) updateOutputTextView
