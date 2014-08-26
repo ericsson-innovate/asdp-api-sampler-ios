@@ -31,7 +31,8 @@ typedef NSUInteger APIManagerState;
 - (void) loadSpecs;
 - (BOOL) isSupported:(APISpec *)spec;
 
-@property (nonatomic, strong) NSArray *categories;
+@property (nonatomic, strong, readonly) NSArray *categories;
+@property (nonatomic, strong, readonly) NSDictionary *specs;
 @property (nonatomic) APIManagerState state;
 
 @end

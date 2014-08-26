@@ -73,10 +73,13 @@
         } else
         {
             NSMutableDictionary *specDictionary = [NSMutableDictionary new];
+            NSMutableDictionary *allSpecs = [NSMutableDictionary new];
 
             [rawSpecData enumerateObjectsUsingBlock:^(NSDictionary *specJSON, NSUInteger specIdx, BOOL *specStop) {
                 APISpecRaw *rawSpec = [APISpecRaw fromJSONObject:specJSON];
                 APISpec *spec = [[APISpec alloc] initWithAPISpecRaw:rawSpec];
+
+                allSpecs[spec.docNumber] = spec;
 
                 [rawSpec.categories enumerateObjectsUsingBlock:^(NSString *category, NSUInteger categoryIdx, BOOL *categoryStop) {
                     NSMutableArray *specs = specDictionary[category];
@@ -92,6 +95,8 @@
             }];
 
             // Make everything immutable
+
+            _specs = [NSDictionary dictionaryWithDictionary:allSpecs];
 
             NSMutableArray *categories = [NSMutableArray new];
 
