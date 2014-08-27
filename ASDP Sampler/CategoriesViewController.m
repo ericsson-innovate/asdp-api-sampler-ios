@@ -83,7 +83,7 @@
 
     cell.textLabel.text = categoryName;
 
-    NSString *apiAmount = [NSString stringWithFormat:@"%d apis available", category.specs.count];
+    NSString *apiAmount = [NSString stringWithFormat:@"%d apis available", (int) category.specs.count];
     cell.detailTextLabel.text = apiAmount;
 
     return cell;

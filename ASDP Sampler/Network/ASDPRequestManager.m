@@ -91,7 +91,7 @@
         [request setHTTPMethod:@"POST"];
 
         NSString *oneTimePassword = params[@"request"][@"otp"];
-        int pin = [params[@"request"][@"pin"] integerValue];
+        int pin = [params[@"request"][@"pin"] intValue];
 
         if (!oneTimePassword) oneTimePassword = @"";
 
@@ -672,7 +672,7 @@
         if (self.apiKey) [request setValue:self.apiKey forHTTPHeaderField:@"APIKey"];
     }
 
-    NSString *contentLength = [NSString stringWithFormat:@"%d", request.HTTPBody.length];
+    NSString *contentLength = [NSString stringWithFormat:@"%d", (int) request.HTTPBody.length];
     [request setValue:contentLength forHTTPHeaderField:@"Content-Length"];
 
     ASDPResult *result;
