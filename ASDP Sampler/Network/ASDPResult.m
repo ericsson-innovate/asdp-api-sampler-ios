@@ -9,8 +9,6 @@
 @implementation ASDPResult
 {
     NSString *_message;
-    NSString *_body;
-    id _data;
 }
 
 - (instancetype) initWithStatusCode:(int)statusCode
@@ -45,6 +43,17 @@
     {
         _statusCode = statusCode;
         _bodyData = bodyData;
+
+        if (_bodyData && _bodyData.length > 0)
+        {
+            _body = [[NSString alloc] initWithData:_bodyData encoding:NSUTF8StringEncoding];
+
+            NSError *error;
+            _data = [NSJSONSerialization JSONObjectWithData:_bodyData options:0 error:&error];
+
+            if (error || !_data)
+                _message = @"API request failed: invalid JSON data";
+        }
     }
 
     return self;
@@ -55,40 +64,10 @@
     if (_message && !_message.length > 0)
         return _message;
 
-    if (!self.isSuccess)
-        return @"API request failed";
-    else
+    if (self.isSuccess)
         return @"API request succeeded";
-}
-
-- (NSString *) body
-{
-    if (_body)
-        return _body;
-
-    if (!_bodyData || _bodyData.length == 0)
-        return nil;
-
-    _body = [[NSString alloc] initWithData:_bodyData encoding:NSUTF8StringEncoding];
-
-    return _body;
-}
-
-- (id) data
-{
-    if (_data)
-        return _data;
-
-    if (!_bodyData || _bodyData.length == 0)
-        return nil;
-
-    NSError *error;
-    _data = [NSJSONSerialization JSONObjectWithData:_bodyData options:0 error:&error];
-
-    if (error || !_data)
-        _message = @"API request failed: invalid JSON data";
-
-    return _data;
+    else
+        return @"API request failed";
 }
 
 - (BOOL) isSuccess
