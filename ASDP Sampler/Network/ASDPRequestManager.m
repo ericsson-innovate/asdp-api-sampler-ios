@@ -343,6 +343,138 @@
 }
 // ## END 2.6.12-get-vehicle-status
 
+// ## START 2.13.1-add-a-subscriber
+- (void) addASubscriber:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *requestPath = [NSString stringWithFormat:@"subscribers/v1/subscriber/add"];
+        NSURL *requestURL = [self buildURL:requestPath];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
+        [request setHTTPMethod:@"POST"];
+
+        ASDPResult *result = [self processRequest:request params:params[@"request"]];
+
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(result);
+            });
+        }
+    });
+}
+// ## END 2.13.1-add-a-subscriber
+
+// ## START 2.13.2-add-a-subscriber-and-vehicle
+- (void) addASubscriberAndVehicle:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *requestPath = [NSString stringWithFormat:@"subscribers/v1/subscriber-vehicle/add"];
+        NSURL *requestURL = [self buildURL:requestPath];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
+        [request setHTTPMethod:@"POST"];
+
+        ASDPResult *result = [self processRequest:request params:params[@"request"]];
+
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(result);
+            });
+        }
+    });
+}
+// ## END 2.13.2-add-a-subscriber-and-vehicle
+
+// ## START 2.13.3-update-a-subscriber
+- (void) updateASubscriber:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *subscriberId = params[@"route"][@"id"];
+
+        NSString *requestPath = [NSString stringWithFormat:@"subscribers/v1/subscriber/update/%@", subscriberId];
+        NSURL *requestURL = [self buildURL:requestPath];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
+        [request setHTTPMethod:@"POST"];
+
+        ASDPResult *result = [self processRequest:request params:params[@"request"]];
+
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(result);
+            });
+        }
+    });
+}
+// ## END 2.13.3-update-a-subscriber
+
+// ## START 2.13.4-delete-a-subscriber
+- (void) deleteASubscriber:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *subscriberId = params[@"route"][@"id"];
+
+        NSString *requestPath = [NSString stringWithFormat:@"subscribers/v1/subscriber/delete/%@", subscriberId];
+        NSURL *requestURL = [self buildURL:requestPath];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
+        [request setHTTPMethod:@"DELETE"];
+
+        ASDPResult *result = [self processRequest:request params:nil];
+
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(result);
+            });
+        }
+    });
+}
+// ## END 2.13.4-delete-a-subscriber
+
+// ## START 2.13.5-view-a-subscriber
+- (void) viewASubscriber:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *subscriberId = params[@"route"][@"id"];
+
+        NSString *requestPath = [NSString stringWithFormat:@"subscribers/v1/subscriber/view/%@", subscriberId];
+        NSURL *requestURL = [self buildURL:requestPath];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
+        [request setHTTPMethod:@"GET"];
+
+        ASDPResult *result = [self processRequest:request params:nil];
+
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(result);
+            });
+        }
+    });
+}
+// ## END 2.13.5-view-a-subscriber
+
+// ## START 2.13.6-search-subscribers
+- (void) searchSubscribers:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *requestPath = [NSString stringWithFormat:@"subscribers/v1/subscriber/search"];
+        NSURL *requestURL = [self buildURL:requestPath];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
+        [request setHTTPMethod:@"POST"];
+
+        ASDPResult *result = [self processRequest:request params:params[@"request"]];
+
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(result);
+            });
+        }
+    });
+}
+// ## END 2.13.6-search-subscribers
+
 // ## START 2.16.1-add-a-vehicle
 - (void) addAVehicle:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
 {
