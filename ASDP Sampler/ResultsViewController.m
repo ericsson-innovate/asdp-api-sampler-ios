@@ -43,7 +43,11 @@
         self.requestStatusLabel.text = [NSString stringWithFormat:@"%d", result.statusCode];
         self.headersSwitch.enabled = YES;
         self.transactionSwitch.enabled = YES;
-        self.getRequestStatusItem.enabled = result.data[@"requestId"] != nil;
+
+        if (result.data && [result.data isKindOfClass:[NSDictionary class]])
+            self.getRequestStatusItem.enabled = result.data[@"requestId"] != nil;
+        else
+            self.getRequestStatusItem.enabled = NO;
     } else
     {
         self.requestStatusLabel.text = @"Unknown";

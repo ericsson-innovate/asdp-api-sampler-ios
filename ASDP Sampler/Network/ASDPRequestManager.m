@@ -458,6 +458,11 @@
 - (void) searchSubscribers:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *query = params[@"request"][@"query"];
+
+        if (!query)
+            params[@"request"][@"query"] = @"*";
+
         NSString *requestPath = [NSString stringWithFormat:@"subscribers/v1/subscriber/search"];
         NSURL *requestURL = [self buildURL:requestPath];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
@@ -611,6 +616,11 @@
 - (void) searchVehicles:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *query = params[@"request"][@"query"];
+
+        if (!query)
+            params[@"request"][@"query"] = @"*";
+
         NSString *requestPath = [NSString stringWithFormat:@"vehicles/v1/vehicle/search"];
         NSURL *requestURL = [self buildURL:requestPath];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
