@@ -343,6 +343,121 @@
 }
 // ## END 2.6.12-get-vehicle-status
 
+// ## START 2.12.1-consume
+- (void) consume:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
+{
+    NSString *userURI = params[@"route"][@"userURI"];
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *requestPath = [NSString stringWithFormat:@"content/v1/commerce/consume/%@", userURI];
+        NSURL *requestURL = [self buildURL:requestPath];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
+        [request setHTTPMethod:@"POST"];
+
+        ASDPResult *result = [self processRequest:request params:params[@"request"]];
+
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(result);
+            });
+        }
+    });
+}
+// ## END 2.12.1-consume
+
+// ## START 2.12.9-get-products
+- (void) getProducts:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
+{
+    NSString *userURI = params[@"route"][@"userURI"];
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *requestPath = [NSString stringWithFormat:@"content/v1/commerce/getProducts/%@", userURI];
+        NSURL *requestURL = [self buildURL:requestPath];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
+        [request setHTTPMethod:@"POST"];
+
+        ASDPResult *result = [self processRequest:request params:params[@"request"]];
+
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(result);
+            });
+        }
+    });
+}
+// ## END 2.12.9-get-products
+
+// ## START 2.12.11-get-user-purchases
+- (void) getUserPurchases:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
+{
+    NSString *userURI = params[@"route"][@"userURI"];
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *requestPath = [NSString stringWithFormat:@"content/v1/commerce/getUserPurchases/%@", userURI];
+        NSURL *requestURL = [self buildURL:requestPath];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
+        [request setHTTPMethod:@"POST"];
+
+        ASDPResult *result = [self processRequest:request params:params[@"request"]];
+
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(result);
+            });
+        }
+    });
+}
+// ## END 2.12.11-get-user-purchases
+
+// ## START 2.12.15-purchase
+- (void) purchase:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
+{
+    NSString *userURI = params[@"route"][@"userURI"];
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *requestPath = [NSString stringWithFormat:@"content/v1/commerce/purchase/%@", userURI];
+        NSURL *requestURL = [self buildURL:requestPath];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
+        [request setHTTPMethod:@"POST"];
+
+        ASDPResult *result = [self processRequest:request params:params[@"request"]];
+
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(result);
+            });
+        }
+    });
+}
+// ## END 2.12.15-purchase
+
+// ## START 2.12.18-refund
+- (void) refund:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
+{
+    NSString *userURI = params[@"route"][@"userURI"];
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *requestPath = [NSString stringWithFormat:@"content/v1/commerce/refund/%@", userURI];
+        NSURL *requestURL = [self buildURL:requestPath];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
+        [request setHTTPMethod:@"POST"];
+
+        ASDPResult *result = [self processRequest:request params:params[@"request"]];
+
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(result);
+            });
+        }
+    });
+}
+// ## END 2.12.18-refund
+
 // ## START 2.13.1-add-a-subscriber
 - (void) addASubscriber:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
 {
