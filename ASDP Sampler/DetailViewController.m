@@ -32,14 +32,20 @@
     NSMutableDictionary *_routeParams;
     NSMutableDictionary *_requestParams;
     ASDPResult *_lastResult;
+
+    NSMutableArray *_routeParamTextFields;
+    NSMutableArray *_requestParamTextFields;
 }
 
-- (void)viewDidLoad
+- (void) viewDidLoad
 {
     [super viewDidLoad];
     
     self.sendItem = [[UIBarButtonItem alloc] initWithTitle:@"Send" style:UIBarButtonItemStylePlain target:self action:@selector(sendData:)];
     self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+
+    _routeParamTextFields = [NSMutableArray new];
+    _requestParamTextFields = [NSMutableArray new];
 
     self.state = DetailStateInitial;
 }
@@ -217,16 +223,22 @@
     UITextField *valueTextField = (UITextField *) [cell.contentView viewWithTag:103];
     [valueTextField setPlaceholder:title];
     [valueTextField setDelegate:self];
-    valueTextField.tag = indexPath.section;
+
+    [_requestParamTextFields removeObject:valueTextField];
+    [_routeParamTextFields removeObject:valueTextField];
 
     NSString *defaultValue;
 
     if (indexPath.section == 0)
     {
+        [_routeParamTextFields addObject:valueTextField];
+
         if (_routeParams[title])
             defaultValue = [NSString stringWithFormat:@"%@", _routeParams[title]];
     } else
     {
+        [_requestParamTextFields addObject:valueTextField];
+
         if (_requestParams[title])
             defaultValue = [NSString stringWithFormat:@"%@", _requestParams[title]];
     }
@@ -243,12 +255,20 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    NSMutableDictionary *params = (textField.tag == 0) ? _routeParams : _requestParams;
+    NSMutableDictionary *params;
 
-    if (textField.text && textField.text.length > 0)
-        params[textField.placeholder] = textField.text;
-    else
-        [params removeObjectForKey:textField.placeholder];
+    if ([_routeParamTextFields containsObject:textField])
+        params = _routeParams;
+    else if ([_requestParamTextFields containsObject:textField])
+        params = _requestParams;
+
+    if (params)
+    {
+        if (textField.text && textField.text.length > 0)
+            params[textField.placeholder] = textField.text;
+        else
+            [params removeObjectForKey:textField.placeholder];
+    }
 }
 
 #pragma mark - Actions
