@@ -10,7 +10,7 @@
 			<key>AutocorrectionType</key>
 			<string>No</string>
 			<key>DefaultValue</key>
-			<string>http://car2.hack.att.io:3000/</string>
+			<string>http://car1.hack.att.io:3000/</string>
 			<key>IsSecure</key>
 			<false/>
 			<key>Key</key>
