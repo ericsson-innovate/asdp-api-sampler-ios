@@ -97,10 +97,12 @@
 
         case DetailStateLoading:
             self.navigationItem.rightBarButtonItem.enabled = NO;
+            _parametersTableView.userInteractionEnabled = NO;
             break;
 
         case DetailStateComplete:
             self.navigationItem.rightBarButtonItem.enabled = YES;
+            _parametersTableView.userInteractionEnabled = YES;
             break;
             
         default:break;
