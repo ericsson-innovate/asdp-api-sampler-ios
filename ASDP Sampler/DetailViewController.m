@@ -21,6 +21,14 @@
 @property (weak, nonatomic) IBOutlet UINavigationItem *titleItem;
 @property (weak, nonatomic) IBOutlet UITableView *parametersTableView;
 
+// constraints
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *detailDescriptionTopConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *detailDescriptionLeftConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *detailDescriptionRightConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *initialTableViewTopConstraint;
+@property (strong, nonatomic) NSLayoutConstraint *keyboardTableViewTopConstraint;
+
+// actions
 - (void)configureView;
 
 @end
@@ -34,6 +42,8 @@
 
     NSMutableArray *_routeParamTextFields;
     NSMutableArray *_requestParamTextFields;
+    
+    BOOL _adjustedForKeyboard;
 }
 
 - (void) viewDidLoad
@@ -247,6 +257,14 @@
 
 #pragma mark - UITextFieldDelegate methods
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        [self makeWayForKeyboard:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(makeWayForKeyboard:) name:UIKeyboardDidShowNotification object:nil];
+    }
+}
+
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     NSMutableDictionary *params;
@@ -263,6 +281,76 @@
         else
             [params removeObjectForKey:textField.placeholder];
     }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+#pragma mark - Keyboard UI adjustments
+
+- (void) makeWayForKeyboard:(NSNotification *)notification
+{
+    if (_adjustedForKeyboard)
+        return;
+    
+    if (notification)
+    {
+        NSDictionary* info = [notification userInfo];
+        CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+        
+        UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
+        self.parametersTableView.contentInset = contentInsets;
+        self.parametersTableView.scrollIndicatorInsets = contentInsets;
+        
+        _adjustedForKeyboard = YES;
+        
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleKeyboardDismissal:) name:UIKeyboardDidHideNotification object:nil];
+    } else {
+        [self.view removeConstraint:self.initialTableViewTopConstraint];
+        [self.view removeConstraint:self.detailDescriptionTopConstraint];
+        [self.view removeConstraint:self.detailDescriptionLeftConstraint];
+        [self.view removeConstraint:self.detailDescriptionRightConstraint];
+        
+        [self.detailDescriptionTextView removeFromSuperview];
+        
+        if (!self.keyboardTableViewTopConstraint)
+            self.keyboardTableViewTopConstraint = [NSLayoutConstraint constraintWithItem:self.parametersTableView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0];
+        [self.view addConstraint:self.keyboardTableViewTopConstraint];
+    }
+}
+
+- (void) handleKeyboardDismissal:(NSNotification *)notification
+{
+    if (!_adjustedForKeyboard)
+        return;
+    
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0);
+    self.parametersTableView.contentInset = contentInsets;
+    self.parametersTableView.scrollIndicatorInsets = contentInsets;
+    
+    [self.view removeConstraint:self.keyboardTableViewTopConstraint];
+    [self.view addSubview:self.detailDescriptionTextView];
+    
+    self.initialTableViewTopConstraint = [NSLayoutConstraint constraintWithItem:self.parametersTableView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.detailDescriptionTextView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:10.0];
+    
+    self.detailDescriptionTopConstraint = [NSLayoutConstraint constraintWithItem:self.detailDescriptionTextView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0 constant:8.0];
+    
+    self.detailDescriptionLeftConstraint = [NSLayoutConstraint constraintWithItem:self.detailDescriptionTextView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeading multiplier:1.0 constant:16.0];
+    
+    self.detailDescriptionRightConstraint = [NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.detailDescriptionTextView attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:16.0];
+    
+    [self.view addConstraint:self.initialTableViewTopConstraint];
+    [self.view addConstraint:self.detailDescriptionTopConstraint];
+    [self.view addConstraint:self.detailDescriptionLeftConstraint];
+    [self.view addConstraint:self.detailDescriptionRightConstraint];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidHideNotification object:nil];
+    
+    _adjustedForKeyboard = NO;
 }
 
 #pragma mark - Actions
