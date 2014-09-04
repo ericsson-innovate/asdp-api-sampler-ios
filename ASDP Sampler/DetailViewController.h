@@ -23,6 +23,6 @@ typedef NSUInteger DetailState;
 @property (nonatomic) DetailState state;
 @property (strong, nonatomic) APISpec *detailItem;
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
-@property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+@property (strong, nonatomic) IBOutlet UITextView *detailDescriptionTextView;
 
 @end

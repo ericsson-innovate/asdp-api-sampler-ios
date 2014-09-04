@@ -19,7 +19,6 @@
 @property (strong, nonatomic) ResultsViewController *resultsViewController;
 
 @property (weak, nonatomic) IBOutlet UINavigationItem *titleItem;
-@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UITableView *parametersTableView;
 
 - (void)configureView;
@@ -86,12 +85,7 @@
 
             [self.titleItem setTitle:self.detailItem.name];
 
-            self.descriptionLabel.text = [NSString stringWithFormat:@"[%@] %@", self.detailItem.docNumber, self.detailItem.desc];
-            self.descriptionLabel.numberOfLines = 0;
-            [self.descriptionLabel sizeToFit];
-
-            [self.view setNeedsUpdateConstraints];
-            [self.view setNeedsLayout];
+            self.detailDescriptionTextView.text = [NSString stringWithFormat:@"[%@] %@", self.detailItem.docNumber, self.detailItem.desc];
             
             [self.parametersTableView setDataSource:self];
             [self.parametersTableView setDelegate:self];

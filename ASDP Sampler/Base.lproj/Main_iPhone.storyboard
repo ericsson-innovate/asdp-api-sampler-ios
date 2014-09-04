@@ -91,21 +91,18 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="4sK-Qh-R34">
-                                <rect key="frame" x="20" y="20" width="280" height="72"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Parameters" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OrT-V9-0N9">
-                                <rect key="frame" x="20" y="119" width="91" height="21"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="65B-vs-T7C">
+                                <rect key="frame" x="16" y="8" width="288" height="110"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="110" id="Jh8-SF-Pgc"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Yho-XQ-3uW">
-                                <rect key="frame" x="0.0" y="148" width="320" height="356"/>
+                                <rect key="frame" x="0.0" y="128" width="320" height="376"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RequestCell" id="XlW-w3-l6N">
@@ -167,21 +164,23 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="4sK-Qh-R34" secondAttribute="trailing" constant="20" id="16e-zk-DfA"/>
+                            <constraint firstItem="65B-vs-T7C" firstAttribute="top" secondItem="cIm-e0-J51" secondAttribute="bottom" constant="8" id="3RI-lL-FsP"/>
                             <constraint firstAttribute="trailing" secondItem="Yho-XQ-3uW" secondAttribute="trailing" id="51t-9a-qZa"/>
-                            <constraint firstItem="4sK-Qh-R34" firstAttribute="top" secondItem="cIm-e0-J51" secondAttribute="bottom" constant="20" id="A23-xi-OYc"/>
-                            <constraint firstItem="OrT-V9-0N9" firstAttribute="leading" secondItem="MMQ-IT-qOo" secondAttribute="leading" constant="20" id="Rei-Yt-ar8"/>
-                            <constraint firstItem="OrT-V9-0N9" firstAttribute="top" secondItem="4sK-Qh-R34" secondAttribute="bottom" constant="27" id="ZWJ-Yx-cSz"/>
+                            <constraint firstItem="Yho-XQ-3uW" firstAttribute="top" secondItem="65B-vs-T7C" secondAttribute="bottom" constant="10" id="ctn-AZ-CNB"/>
+                            <constraint firstAttribute="trailing" secondItem="65B-vs-T7C" secondAttribute="trailing" constant="16" id="fOh-P3-hDL"/>
                             <constraint firstItem="Yho-XQ-3uW" firstAttribute="leading" secondItem="MMQ-IT-qOo" secondAttribute="leading" id="h5k-Ux-gZp"/>
-                            <constraint firstItem="4sK-Qh-R34" firstAttribute="leading" secondItem="MMQ-IT-qOo" secondAttribute="leading" constant="20" id="kzC-9q-v0M"/>
+                            <constraint firstItem="65B-vs-T7C" firstAttribute="leading" secondItem="MMQ-IT-qOo" secondAttribute="leading" constant="16" id="r1t-jd-WBs"/>
                             <constraint firstItem="a0L-h9-sNL" firstAttribute="top" secondItem="Yho-XQ-3uW" secondAttribute="bottom" id="riv-ZZ-Z5h"/>
-                            <constraint firstItem="Yho-XQ-3uW" firstAttribute="top" secondItem="OrT-V9-0N9" secondAttribute="bottom" constant="8" id="zI9-xb-qB8"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Detail" id="cra-N8-TIN"/>
                     <connections>
-                        <outlet property="descriptionLabel" destination="4sK-Qh-R34" id="Pe3-nf-Ln7"/>
+                        <outlet property="detailDescriptionLeftConstraint" destination="r1t-jd-WBs" id="q99-7l-NW6"/>
+                        <outlet property="detailDescriptionRightConstraint" destination="fOh-P3-hDL" id="eH6-Xm-drg"/>
+                        <outlet property="detailDescriptionTextView" destination="65B-vs-T7C" id="op5-lf-doo"/>
+                        <outlet property="detailDescriptionTopConstraint" destination="3RI-lL-FsP" id="yDN-yS-iSV"/>
+                        <outlet property="initialTableViewTopConstraint" destination="ctn-AZ-CNB" id="1hy-Hk-fLg"/>
                         <outlet property="parametersTableView" destination="Yho-XQ-3uW" id="AVd-o0-OI2"/>
                         <segue destination="XAO-sb-2JH" kind="push" identifier="showResults" id="Ovc-Z8-RS3"/>
                     </connections>
