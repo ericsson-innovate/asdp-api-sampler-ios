@@ -343,6 +343,121 @@
 }
 // ## END 2.6.12-get-vehicle-status
 
+// ## START 2.6.13-open-trunk
+- (void) openTrunk:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *vin = params[@"route"][@"vin"];
+        
+        NSString *requestPath = [NSString stringWithFormat:@"remoteservices/v1/vehicle/openTrunk/%@", vin];
+        NSURL *requestURL = [self buildURL:requestPath];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
+        [request setHTTPMethod:@"POST"];
+        
+        ASDPResult *result = [self processRequest:request params:params[@"request"]];
+        
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(result);
+            });
+        }
+    });
+}
+// ## END 2.6.13-open-trunk
+
+// ## START 2.6.14-honk
+- (void) honk:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *vin = params[@"route"][@"vin"];
+        
+        NSString *requestPath = [NSString stringWithFormat:@"remoteservices/v1/vehicle/honk/%@", vin];
+        NSURL *requestURL = [self buildURL:requestPath];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
+        [request setHTTPMethod:@"POST"];
+        
+        ASDPResult *result = [self processRequest:request params:params[@"request"]];
+        
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(result);
+            });
+        }
+    });
+}
+// ## END 2.6.14-honk
+
+// ## START 2.6.15-blink
+- (void) blink:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *vin = params[@"route"][@"vin"];
+        
+        NSString *requestPath = [NSString stringWithFormat:@"remoteservices/v1/vehicle/blink/%@", vin];
+        NSURL *requestURL = [self buildURL:requestPath];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
+        [request setHTTPMethod:@"POST"];
+        
+        ASDPResult *result = [self processRequest:request params:params[@"request"]];
+        
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(result);
+            });
+        }
+    });
+}
+// ## END 2.6.15-blink
+
+// ## START 2.6.16-car-alarm-on
+- (void) carAlarmOn:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *vin = params[@"route"][@"vin"];
+        
+        NSString *requestPath = [NSString stringWithFormat:@"remoteservices/v1/vehicle/carAlarmOn/%@", vin];
+        NSURL *requestURL = [self buildURL:requestPath];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
+        [request setHTTPMethod:@"POST"];
+        
+        ASDPResult *result = [self processRequest:request params:params[@"request"]];
+        
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(result);
+            });
+        }
+    });
+}
+// ## END 2.6.16-car-alarm-on
+
+// ## START 2.6.17-car-alarm-off
+- (void) carAlarmOff:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *vin = params[@"route"][@"vin"];
+        
+        NSString *requestPath = [NSString stringWithFormat:@"remoteservices/v1/vehicle/carAlarmOff/%@", vin];
+        NSURL *requestURL = [self buildURL:requestPath];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
+        [request setHTTPMethod:@"POST"];
+        
+        ASDPResult *result = [self processRequest:request params:params[@"request"]];
+        
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(result);
+            });
+        }
+    });
+}
+// ## END 2.6.17-car-alarm-off
+
 // ## START 2.12.1-consume
 - (void) consume:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
 {
