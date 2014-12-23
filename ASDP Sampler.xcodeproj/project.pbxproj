@@ -30,18 +30,7 @@
 		EAB9622B19A26DC400211848 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB9622A19A26DC400211848 /* APIManager.m */; };
 		EAB9623119A270C400211848 /* APISpecRaw.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB9623019A270C400211848 /* APISpecRaw.m */; };
 		EAB9623519A27F9100211848 /* APISpec.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB9623419A27F9100211848 /* APISpec.m */; };
-		EAE6028E19A3D4D2000977ED /* ASDP_Sampler_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE6028D19A3D4D2000977ED /* ASDP_Sampler_Tests.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		EAE6028F19A3D4D2000977ED /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = EA2C55B8199C1CF5009ECA4A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EA2C55BF199C1CF5009ECA4A;
-			remoteInfo = "ASDP Sampler";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		BB9F70D1BB7988C456C70919 /* CategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryViewController.h; sourceTree = "<group>"; };
@@ -84,9 +73,6 @@
 		EAB9623219A27E0600211848 /* JSONObjectCoding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JSONObjectCoding.h; path = "ASDP Sampler/API/JSONObjectCoding.h"; sourceTree = SOURCE_ROOT; };
 		EAB9623319A27F9100211848 /* APISpec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APISpec.h; sourceTree = "<group>"; };
 		EAB9623419A27F9100211848 /* APISpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APISpec.m; sourceTree = "<group>"; };
-		EAE6028919A3D4D2000977ED /* ASDP Sampler Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ASDP Sampler Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		EAE6028C19A3D4D2000977ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EAE6028D19A3D4D2000977ED /* ASDP_Sampler_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASDP_Sampler_Tests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,13 +86,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EAE6028619A3D4D2000977ED /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -114,7 +93,6 @@
 			isa = PBXGroup;
 			children = (
 				EA2C55C9199C1CF5009ECA4A /* ASDP Sampler */,
-				EAE6028A19A3D4D2000977ED /* ASDP Sampler Tests */,
 				EA2C55C2199C1CF5009ECA4A /* Frameworks */,
 				EA2C55C1199C1CF5009ECA4A /* Products */,
 			);
@@ -124,7 +102,6 @@
 			isa = PBXGroup;
 			children = (
 				EA2C55C0199C1CF5009ECA4A /* ASDP Sampler.app */,
-				EAE6028919A3D4D2000977ED /* ASDP Sampler Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -214,23 +191,6 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
-		EAE6028A19A3D4D2000977ED /* ASDP Sampler Tests */ = {
-			isa = PBXGroup;
-			children = (
-				EAE6028D19A3D4D2000977ED /* ASDP_Sampler_Tests.m */,
-				EAE6028B19A3D4D2000977ED /* Supporting Files */,
-			);
-			path = "ASDP Sampler Tests";
-			sourceTree = "<group>";
-		};
-		EAE6028B19A3D4D2000977ED /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				EAE6028C19A3D4D2000977ED /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -251,24 +211,6 @@
 			productReference = EA2C55C0199C1CF5009ECA4A /* ASDP Sampler.app */;
 			productType = "com.apple.product-type.application";
 		};
-		EAE6028819A3D4D2000977ED /* ASDP Sampler Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = EAE6029119A3D4D2000977ED /* Build configuration list for PBXNativeTarget "ASDP Sampler Tests" */;
-			buildPhases = (
-				EAE6028519A3D4D2000977ED /* Sources */,
-				EAE6028619A3D4D2000977ED /* Frameworks */,
-				EAE6028719A3D4D2000977ED /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				EAE6029019A3D4D2000977ED /* PBXTargetDependency */,
-			);
-			name = "ASDP Sampler Tests";
-			productName = "ASDP Sampler Tests";
-			productReference = EAE6028919A3D4D2000977ED /* ASDP Sampler Tests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -277,12 +219,6 @@
 			attributes = {
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "AT&T Foundry";
-				TargetAttributes = {
-					EAE6028819A3D4D2000977ED = {
-						CreatedOnToolsVersion = 6.0;
-						TestTargetID = EA2C55BF199C1CF5009ECA4A;
-					};
-				};
 			};
 			buildConfigurationList = EA2C55BB199C1CF5009ECA4A /* Build configuration list for PBXProject "ASDP Sampler" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -298,7 +234,6 @@
 			projectRoot = "";
 			targets = (
 				EA2C55BF199C1CF5009ECA4A /* ASDP Sampler */,
-				EAE6028819A3D4D2000977ED /* ASDP Sampler Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -314,13 +249,6 @@
 				EA2C55D7199C1CF5009ECA4A /* Main_iPhone.storyboard in Resources */,
 				EAB523B719A553EE0091C453 /* Settings.bundle in Resources */,
 				EA2C55CE199C1CF5009ECA4A /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EAE6028719A3D4D2000977ED /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,23 +276,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EAE6028519A3D4D2000977ED /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EAE6028E19A3D4D2000977ED /* ASDP_Sampler_Tests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		EAE6029019A3D4D2000977ED /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = EA2C55BF199C1CF5009ECA4A /* ASDP Sampler */;
-			targetProxy = EAE6028F19A3D4D2000977ED /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		EA2C55CC199C1CF5009ECA4A /* InfoPlist.strings */ = {
@@ -500,48 +412,6 @@
 			};
 			name = Release;
 		};
-		EAE6029219A3D4D2000977ED /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ASDP Sampler.app/ASDP Sampler";
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "ASDP Sampler Tests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				METAL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-			};
-			name = Debug;
-		};
-		EAE6029319A3D4D2000977ED /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ASDP Sampler.app/ASDP Sampler";
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "ASDP Sampler Tests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				METAL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -559,15 +429,6 @@
 			buildConfigurations = (
 				EA2C55F9199C1CF5009ECA4A /* Debug */,
 				EA2C55FA199C1CF5009ECA4A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		EAE6029119A3D4D2000977ED /* Build configuration list for PBXNativeTarget "ASDP Sampler Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				EAE6029219A3D4D2000977ED /* Debug */,
-				EAE6029319A3D4D2000977ED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
