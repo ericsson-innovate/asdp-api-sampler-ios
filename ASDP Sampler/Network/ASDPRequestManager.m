@@ -343,6 +343,7 @@
 }
 // ## END 2.6.12-get-vehicle-status
 
+/*
 // ## START 2.6.13-bus-info
 - (void) getBusInfo:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
 {
@@ -480,7 +481,7 @@
     });
 }
 // ## END 2.6.17-car-alarm-off
-
+*/
 // ## START 2.12.1-consume
 - (void) consume:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
 {
