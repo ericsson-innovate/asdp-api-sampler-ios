@@ -344,7 +344,7 @@
 // ## END 2.6.12-get-vehicle-status
 
 
-// ## START 2.6.13-bus-info
+// ## START 2.6.13-get-bus-info
 - (void) getBusInfo:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
@@ -365,7 +365,7 @@
         }
     });
 }
-// ## END 2.6.13-bus-info
+// ## END 2.6.13-get-bus-info
 
 /*
 // ## START 2.6.13-open-trunk
