@@ -343,6 +343,29 @@
 }
 // ## END 2.6.12-get-vehicle-status
 
+// ## START 2.6.13-bus-info
+- (void) getBusInfo:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *vin = params[@"route"][@"vin"];
+
+        NSString *requestPath = [NSString stringWithFormat:@"remoteservices/v1/vehicle/bus_info/view/%@", vin];
+        NSURL *requestURL = [self buildURL:requestPath];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
+        [request setHTTPMethod:@"POST"];
+
+        ASDPResult *result = [self processRequest:request params:params[@"request"]];
+
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(result);
+            });
+        }
+    });
+}
+// ## END 2.6.13-bus-info
+
 // ## START 2.6.13-open-trunk
 - (void) openTrunk:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
 {

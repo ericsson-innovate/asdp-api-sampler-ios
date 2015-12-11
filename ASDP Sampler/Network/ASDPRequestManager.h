@@ -35,6 +35,7 @@ typedef void (^ ASDPRequestCompletionBlock)(ASDPResult *result);
 - (void) checkRequestStatus:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion;
 - (void) viewDiagnosticData:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion;
 - (void) getVehicleStatus:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion;
+- (void) getBusInfo:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion;
 - (void) openTrunk:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion;
 - (void) honk:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion;
 - (void) blink:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion;
