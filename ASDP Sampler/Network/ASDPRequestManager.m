@@ -735,6 +735,124 @@
 }
 // ## END 2.13.6-search-subscribers
 
+
+// ## START 2.14.1-add-a-passenger
+- (void) addAPassenger:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *requestPath = [NSString stringWithFormat:@"passengers/v1/passenger/add"];
+        NSURL *requestURL = [self buildURL:requestPath];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
+        [request setHTTPMethod:@"POST"];
+
+        ASDPResult *result = [self processRequest:request params:params[@"request"]];
+
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(result);
+            });
+        }
+    });
+}
+// ## END 2.14.1-add-a-passenger
+
+// ## START 2.14.2-update-a-passenger
+- (void) updateAPassenger:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *subscriberId = params[@"route"][@"id"];
+
+        NSString *requestPath = [NSString stringWithFormat:@"passengers/v1/passenger/update/%@", subscriberId];
+        NSURL *requestURL = [self buildURL:requestPath];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
+        [request setHTTPMethod:@"POST"];
+
+        ASDPResult *result = [self processRequest:request params:params[@"request"]];
+
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(result);
+            });
+        }
+    });
+}
+// ## END 2.14.2-update-a-passenger
+
+// ## START 2.14.3-delete-a-passenger
+- (void) deleteAPassenger:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *subscriberId = params[@"route"][@"id"];
+
+        NSString *requestPath = [NSString stringWithFormat:@"passengers/v1/passenger/delete/%@", subscriberId];
+        NSURL *requestURL = [self buildURL:requestPath];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
+        [request setHTTPMethod:@"DELETE"];
+
+        ASDPResult *result = [self processRequest:request params:nil];
+
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(result);
+            });
+        }
+    });
+}
+// ## END 2.14.3-delete-a-passenger
+
+// ## START 2.14.4-view-a-passenger
+- (void) viewAPassenger:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *subscriberId = params[@"route"][@"id"];
+
+        NSString *requestPath = [NSString stringWithFormat:@"passengers/v1/passenger/view/%@", subscriberId];
+        NSURL *requestURL = [self buildURL:requestPath];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
+        [request setHTTPMethod:@"GET"];
+
+        ASDPResult *result = [self processRequest:request params:nil];
+
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(result);
+            });
+        }
+    });
+}
+// ## END 2.14.4-view-a-passenger
+
+
+// ## START 2.14.5-search-passengers
+- (void) searchPassengers:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *query = params[@"request"][@"query"];
+
+        if (!query)
+            params[@"request"][@"query"] = @"*";
+
+        NSString *requestPath = [NSString stringWithFormat:@"passengers/v1/passenger/search"];
+        NSURL *requestURL = [self buildURL:requestPath];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
+        [request setHTTPMethod:@"POST"];
+
+        ASDPResult *result = [self processRequest:request params:params[@"request"]];
+
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(result);
+            });
+        }
+    });
+}
+// ## END 2.14.5-search-passengers
+
 // ## START 2.16.1-add-a-vehicle
 - (void) addAVehicle:(NSDictionary *)params completion:(ASDPRequestCompletionBlock)completion
 {
